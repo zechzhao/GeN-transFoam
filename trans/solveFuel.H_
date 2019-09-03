@@ -1,0 +1,235 @@
+
+Info << "Solving fuel" << endl ;
+
+    fuelToFluid.mapTgtToSrc( thermo.T(), plusEqOp<scalar>(), TcoolantFuel.internalField());
+	fuelToFluid.mapTgtToSrc( volScalarField(U.component(2)), plusEqOp<scalar>(), coolantFlowFuel.internalField()); //U.component(2) or mag(U)
+
+	// volFuelPower.internalField() /= max(fuelFraction,SMALL)*mesh.V();
+	// volFuelPower.correctBoundaryConditions();
+	fuelToFluid.mapTgtToSrc( volFuelPower, plusEqOp<scalar>(), linearRateFuel.internalField()); //need to divide the pin height
+
+// !!!! ALL THE CALCULATION
+
+	
+	
+//core nodes only for now (only generate the core mesh for fuelMesh)
+	
+
+	forAll(assemblies,zoneI)
+	{
+		const word& name = assemblies[zoneI].keyword();
+        Info << name << endl;
+		label zoneId = fuelMesh.cellZones().findZoneID(name);
+
+		if(zoneId == -1)
+		{
+		  Info << "Mesh zone: " << name << " does not exists" << endl;
+		}
+
+//TcoolantFuel,coolantFlowFuel,linearRateFuel -> Trans  //mendmax = 60
+
+		scalar height = SMALL;
+
+		List<scalar> avgFlow;
+		List<scalar> avgRate;
+		List<scalar> avgTemp;
+
+		List<scalar> heightNum;
+
+		List<scalar> cellTemp;
+		List<scalar> cellRate;
+		List<scalar> cellFlow;
+
+		forAll(fuelMesh.cellZones()[zoneId], cellIlocal)
+		{
+		//	Info<< "size" << fuelMesh.cellZones()[zoneId].size()  << endl;
+
+			label cellIglobal = fuelMesh.cellZones()[zoneId][cellIlocal];
+
+			Info<< fuelMesh.C()[cellIglobal].component(2)  << endl;
+
+
+			if ((fuelMesh.C()[cellIglobal].component(2) - height) > 1e-8)
+			{
+				height = fuelMesh.C()[cellIglobal].component(2); // height must be set along the y direction
+				heightNum.append(height);
+
+				if (cellTemp.size()>1)
+				{
+					avgTemp.append(sum(cellTemp)/cellTemp.size());
+					avgFlow.append(sum(cellFlow)/cellTemp.size());
+					avgRate.append(sum(cellRate)/cellTemp.size());	
+
+					cellTemp.clear();
+					cellFlow.clear();
+					cellRate.clear();
+				}
+
+			}
+
+			cellTemp.append(TcoolantFuel[cellIglobal]);
+			cellFlow.append(coolantFlowFuel[cellIglobal]);
+			cellRate.append(linearRateFuel[cellIglobal]);
+		}
+
+		avgTemp.append(sum(cellTemp)/cellTemp.size());
+		avgFlow.append(sum(cellFlow)/cellTemp.size());
+		avgRate.append(sum(cellRate)/cellTemp.size());
+
+		Info<< "height recorded" << heightNum <<endl;
+
+		Info<< "averaged temperature" << avgTemp <<endl;
+		// Info<< "averaged flow" << avgFlow << endl;
+		// Info<< "averaged Rate" << avgRate << endl;
+
+// 2: linear rod power (kW/m)
+// 4: coolant flow rate (g/h)
+// 9: coolant temperature (C)
+
+	//	label transTime = fuelDataList[zoneI].messageToTrans[12][2]+0.06;
+//
+//	        for (int j = 0; j<13; ++j)
+//		for(int i = 0; i<65; ++i)
+//		        {
+//		        	if (j == 2 && i < 5 ) fuelDataList[zoneI].messageToTrans[j][i] = transTime; 
+//		        	if (j == 1 && i < 5 ) fuelDataList[zoneI].messageToTrans[j][i] = 1;
+//				else  fuelDataList[zoneI].messageToTrans[j][i] = 0;
+//		        }
+//		
+//
+//		forAll(heightNum, heightId)
+//		{			
+//			forAll(avgTemp, tempId)
+//
+//			{
+//				fuelDataList[zoneI].messageToTrans[1][tempId+5] = avgRate[heightId]/max(avgRate);
+//				fuelDataList[zoneI].messageToTrans[2][tempId+5] = avgFlow[heightId]/max(avgFlow);
+//				fuelDataList[zoneI].messageToTrans[3][tempId+5] = avgTemp[heightId]/max(avgTemp);
+//			}
+//		}
+//
+//		fuelDataList[zoneI].messageToTrans[1][3] = max(avgRate);
+//		fuelDataList[zoneI].messageToTrans[2][3] = max(avgFlow);
+//		fuelDataList[zoneI].messageToTrans[3][3] = max(avgTemp);
+//		fuelDataList[zoneI].messageToTrans[0][3] = 1;
+//		fuelDataList[zoneI].messageToTrans[1][3] = 2;
+//		fuelDataList[zoneI].messageToTrans[2][3] = 4;
+//		fuelDataList[zoneI].messageToTrans[3][3] = 9;
+//
+//		for (int j = 0; j<13; ++j)
+//		for(int i = 0; i<65; ++i)
+//		{
+//			Info<< fuelDataList[zoneI].messageToTrans[j][i] << '\t';
+//		}
+
+
+    for (int i = 0; i<13; ++i)
+        for (int j = 0; j<65; ++j) {
+        	fuelDataList[zoneI].messageToTrans[i][j] = 0;
+    }
+
+    transTime  += 0.1;
+
+	fuelDataList[zoneI].messageToTrans[0][0] = 1; fuelDataList[zoneI].messageToTrans[0][2] = transTime;
+	fuelDataList[zoneI].messageToTrans[1][0] = 2; fuelDataList[zoneI].messageToTrans[1][2] = transTime;fuelDataList[zoneI].messageToTrans[1][3] = 20;
+	fuelDataList[zoneI].messageToTrans[2][0] = 3; fuelDataList[zoneI].messageToTrans[2][2] = transTime;fuelDataList[zoneI].messageToTrans[2][3] = 9e13;
+	fuelDataList[zoneI].messageToTrans[3][0] = 30;fuelDataList[zoneI].messageToTrans[3][2] = transTime;
+    fuelDataList[zoneI].messageToTrans[4][2] = transTime+0.01;
+	fuelDataList[zoneI].macroi = 0;
+	fuelDataList[zoneI].zoneNo = zoneI;
+	
+	icase = 1;
+	passtotrans(&(fuelDataList[zoneI]), &icase);
+
+		
+	for (int i = 0; i<20; ++i)
+    {
+        cout<<"FUEL CENTRAL "  	<< fuelDataList[zoneI].TEBI[i] << "C \t" << endl;
+        	// <<"FUEL OUTER "		<< fuelDataList[zoneI].TEBA[i] << "C \t"
+        	// <<"INNER CLADDING " << fuelDataList[zoneI].TEHI[i] << "C \t" 
+        	// <<"OUTER CLADDING " << fuelDataList[zoneI].TEHA[i] << "C \t"
+        	// <<"FUEL AVERAGE " 	<< fuelDataList[zoneI].AvTempFu[0][i]<< "C \n";
+    }
+
+
+//transresults -> Gen Fuel fields
+
+		//#include transToGen.H
+
+
+		List<scalar> transFuelCentralTemp;
+		List<scalar> transFuelOuterTemp;
+		List<scalar> transCladinnerTemp;
+		List<scalar> transCladOuterTemp;
+		List<scalar> transFuelAvgTemp;
+		List<scalar> transCladAvgTemp;
+
+		forAll(avgTemp, tempId)
+		{			
+			transFuelCentralTemp.append(fuelDataList[zoneI].TEBI[tempId]);
+			transFuelOuterTemp.append(fuelDataList[zoneI].TEBA[tempId]);
+			transCladinnerTemp.append(fuelDataList[zoneI].TEHI[tempId]);
+			transCladOuterTemp.append(fuelDataList[zoneI].TEHA[tempId]);
+			transFuelAvgTemp.append(fuelDataList[zoneI].AvTempFu[0][tempId]);
+			transCladAvgTemp.append(fuelDataList[zoneI].AvTempCl[0][tempId]);
+		}
+ 
+ 		Info << "transFuelCentralTemp" << transFuelCentralTemp<< endl;
+ 		// Info << "transCladOuterTemp" << transCladOuterTemp << endl;
+
+		height = SMALL;
+		label h = SMALL;
+
+		forAll(fuelMesh.cellZones()[zoneId], cellIlocal)
+		{
+			label cellIglobal = fuelMesh.cellZones()[zoneId][cellIlocal];
+
+			if ((fuelMesh.C()[cellIglobal].component(2) - height) > 1e-8)
+			{
+				height = fuelMesh.C()[cellIglobal].component(2);
+				forAll(heightNum, heightId)
+				{
+					if ((heightNum[heightId] - height)<1e-8) h = heightId;
+					// Info << "h \t"<< h << endl;
+				}
+			}
+
+
+			TCentralFuel[cellIglobal] = transFuelCentralTemp[h];
+			TOuterFuel[cellIglobal] = transFuelOuterTemp[h];
+			TInnerClad[cellIglobal] = transCladinnerTemp[h];
+			TOuterClad[cellIglobal] = transCladOuterTemp[h];
+			TavfuelFuel[cellIglobal] = transFuelAvgTemp[h];
+			TavcladFuel[cellIglobal] = transCladAvgTemp[h];
+		}
+
+	}
+ 
+
+// mapping back
+
+	TinnerFuel *= 0;
+	neutroToFluid.mapSrcToTgt(TCentralFuel, plusEqOp<scalar>(), TinnerFuel);
+	TinnerFuel.correctBoundaryConditions();
+
+	TouterFuel *= 0;
+	neutroToFluid.mapSrcToTgt(TOuterFuel, plusEqOp<scalar>(), TouterFuel);
+	TouterFuel.correctBoundaryConditions();
+
+	TinnerClad *= 0;
+	neutroToFluid.mapSrcToTgt(TInnerClad, plusEqOp<scalar>(), TinnerClad);
+	TinnerClad.correctBoundaryConditions();
+
+	TouterClad *= 0;
+	neutroToFluid.mapSrcToTgt(TOuterClad, plusEqOp<scalar>(), TouterClad);
+	TouterClad.correctBoundaryConditions();
+
+	TavFuel *= 0;
+	neutroToFluid.mapSrcToTgt(TavfuelFuel, plusEqOp<scalar>(), TavFuel);
+	TavFuel.correctBoundaryConditions();
+
+	TavClad *= 0;
+	neutroToFluid.mapSrcToTgt(TavcladFuel, plusEqOp<scalar>(), TavClad);
+	TavClad.correctBoundaryConditions();
+
+	// Info<< "TinnerFuel" << TinnerFuel << endl;

@@ -1,0 +1,1503 @@
+
+! ##################
+  Module Global_Data
+! ##################
+
+      Integer :: macroi  = 0
+      Integer :: iwert, iaxvar
+
+
+! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+! ++++++++++++++++                                  ++++++++++++++++++++
+! ++++++++++++++++     TRANSURANUS Global Data      ++++++++++++++++++++
+! ++++++++++++++++     TRANSURANUS Global Data      ++++++++++++++++++++
+! ++++++++++++++++     TRANSURANUS Global Data      ++++++++++++++++++++
+! ++++++++++++++++                                  ++++++++++++++++++++
+! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+!     ******************************************************************
+!     *                                                                *
+!     *                    TRANSURANUS Code System                     *
+!     *                                                                *
+!     *                      Author: K. Lassmann                       *
+!     *                                                                *
+!     *            Copyright (C) 1975-2016, European Commission        *
+!     *                                                                *
+!     *                                                                *
+!     *                       Global Data                              *
+!     *                       ===========                              *
+!     *                                                                *
+!     *               Modification 57 ,  Date 20.08.2015               *
+!     *                                                                *
+!     ******************************************************************
+
+!     Comment KL: At first look, this modification seems to be the same
+!                 as the previous formulation via Common Blocks.
+!                 However, it forms the basis, if allocatable arrays
+!                 are to be introduced.
+
+!                 Fortran 95 allows the form  Real :: abc (100) but
+!                 Real , Dimension (100) :: abc
+!                 would be better and should be introduced step by step
+
+!     ==================================================================
+!                      Definition of symbolic constants
+
+!     --- Maximum number of radial coarse zones
+
+      Integer , Parameter :: igrmax = 20
+
+!     --- Maximum number of mesh points in a coarse zone
+
+      Integer , Parameter :: ifemax = 20
+
+!     --- Maximum number of axial slices
+
+      Integer , Parameter :: m3max  = 60
+      Integer , Parameter :: m31max = m3max+1
+      Integer , Parameter :: m32max = m3max+2
+
+!     --- Maximum number of equations for the radial thermal analysis
+
+      Integer , Parameter :: ieqnta = igrmax*ifemax+2+10
+
+!     --- Maximum number of equations for the pore migration
+!         ( see puredi )
+!         and densification ( see densi5 and densi9 )
+
+!CC   Parameter ( ieqnmi = igrmax * (ifemax-1) + 1 )
+
+!     --- Maximum number of equations for mechanics
+
+      Integer , Parameter :: ieqnme = 2*igrmax+2
+
+!     --- Maximum number of points in fuel rod  ( see temp, melt )
+
+!CC   Parameter (ieqnfr = igrmax*ifemax)
+
+!     --- The parameters i4_compm
+!                        r4_compm
+!                        r8_compm and
+!                        IDATF3
+!         depend on the radial and axial discretisation
+!         see also subroutines DATPUT, DatpWr, DatpRe, Inic07 for Restart-Procedure
+!                          and MacrWr, MicrWr and StatWr      for Plotting
+
+      Integer , Parameter :: i4_compm = ( 6 + 6   * igrmax * ifemax + igrmax ) * m31max
+
+      Integer , Parameter :: r4_compm = 800000
+
+      Integer , Parameter :: r8_compm = ( 2 + 137 * igrmax * ifemax ) * m31max
+
+!     ------------------------------------------------------------------
+
+      Integer , Parameter :: idatf3   =  10 + 150 * igrmax * ifemax + 40 + igrmax
+
+      Integer , Parameter :: idatf4   =  73 + 271 * m31max
+
+      Integer , Parameter :: idatf5   =   6 + 8   * m31max
+
+!     ==================================================================
+!                     Global Data A01
+
+!     --- ASCII-Textstrings
+
+      Character ( len =  8 ) , Dimension (30) :: Azzei
+      Character ( len = 80 )                  :: Infplo
+      Character ( len = 80 ) , Dimension (15) :: Itextk
+      Character ( len =  3 ) , Dimension ( 4) :: Pincha
+      Character ( len = 20 ) , Dimension (50) :: Formcha
+
+      common /A01/ Azzei,Infplo,Itextk,Pincha,Formcha
+!     ==================================================================
+!                     Global Data B00
+
+!     --- Input and output units
+
+      Integer      :: UnitNr_restart, kwrite,                             &
+                      UnitNr_pli, UnitNr_mic, UnitNr_mac, UnitNr_sta,     &
+                      nread0, nread, nwrite, UnitNr_sta_scratch,          &
+                      nerror, UnitNr_sta_log,                             &
+                      UnitNr_formf, UnitNr_formf_log,                     &
+                      UnitNr_itlog1, UnitNr_itlog2
+
+      common /B00/    UnitNr_restart, kwrite,                             &
+                      UnitNr_pli, UnitNr_mic, UnitNr_mac, UnitNr_sta,     &
+                      nread0, nread, nwrite, UnitNr_sta_scratch,          &
+                      nerror, UnitNr_sta_log,                             &
+                      UnitNr_formf, UnitNr_formf_log,                     &
+                      UnitNr_itlog1, UnitNr_itlog2             
+!     ==================================================================
+!                     Global Data B01
+
+!     --- Control variables
+
+      Integer      :: IALPHA,IANZA,IAXKON(M3MAX),IBLOC,                   &
+                      iBroyden_s,                                         &
+                      iBroyden_u,                                         &
+                      IBMECH,IBZTEI(30),IBZZEI(30),ICOUPL,                &
+                      IDEGAS(M31MAX,10),IDENSI,IEND1,IFAALT(M31MAX),      &
+                      IFALLL(M31MAX),IFORM,IFREI(IGRMAX,IFEMAX,3),IFRONT, &
+                      IGASZA(M31MAX,3),IGASZI(M31MAX,3),IHGAP,IGRNSZ,     &
+                      IKUEHL, ikueka, INSTA,INTRUP,INUMB,IPLOT,           &
+                      IRAKON(M31MAX),IRAND,IRELOC,                        &
+                      ISCHR,ISCHRL(M31MAX),ISTATI,ISTOP,                  &
+                      ISTREC(IGRMAX,IFEMAX,4),ISTRUK,ITEALT,ITEMTE,       &
+                      ITERAX,ITERAG,                                      &
+                      ITERGE,ITERGS,ITERS(M31MAX),ITERSG,                 &
+                      ITERT,ITERTG,ITHEOMEC,                              &
+                      IVAR1,IXMODE,inumbm,RecNr_mic,RecNr_mac,IZENKA,     &
+                      KFRONT,KPLOT,KRIMAX(IGRMAX,IFEMAX),                 &
+                      Init_one (20), Init_fuel (20), Init_cool (20),      &
+                      Init_axi (M31MAX,20),LSCHNI,MEND,M1,                &
+                      M1B,M1H,M1STR,M2(IGRMAX),M3,M31,M32,NFRONT,NKOMM,   &
+                      NRSUDT,NRSUIT, NTIMAN (40), NTIMSU (40),            &
+                      Number_Nodes_fuel (m31max),                         &
+                      Number_Nodes_clad (m31max), No_TimeStepReq,         &
+                      iWarning_fuel (20), iWarning_clad (20),             &
+                      iWarning_cool (20)
+
+      common /B01/    IALPHA,IANZA,IAXKON,IBLOC,                   &
+                      iBroyden_s,                                         &
+                      iBroyden_u,                                         &
+                      IBMECH,IBZTEI,IBZZEI,ICOUPL,                &
+                      IDEGAS,IDENSI,IEND1,IFAALT,      &
+                      IFALLL,IFORM,IFREI,IFRONT, &
+                      IGASZA,IGASZI,IHGAP,IGRNSZ,     &
+                      IKUEHL, ikueka, INSTA,INTRUP,INUMB,IPLOT,           &
+                      IRAKON,IRAND,IRELOC,                        &
+                      ISCHR,ISCHRL,ISTATI,ISTOP,                  &
+                      ISTREC,ISTRUK,ITEALT,ITEMTE,       &
+                      ITERAX,ITERAG,                                      &
+                      ITERGE,ITERGS,ITERS,ITERSG,                 &
+                      ITERT,ITERTG,ITHEOMEC,                              &
+                      IVAR1,IXMODE,inumbm,RecNr_mic,RecNr_mac,IZENKA,     &
+                      KFRONT,KPLOT,KRIMAX,                 &
+                      Init_one , Init_fuel , Init_cool ,      &
+                      Init_axi ,LSCHNI,MEND,M1,                &
+                      M1B,M1H,M1STR,M2,M3,M31,M32,NFRONT,NKOMM,   &
+                      NRSUDT,NRSUIT, NTIMAN, NTIMSU,            &
+                      Number_Nodes_fuel ,                         &
+                      Number_Nodes_clad , No_TimeStepReq,         &
+                      iWarning_fuel , iWarning_clad ,             &
+                      iWarning_cool 
+!     ==================================================================
+!                     Global Data B01a
+
+      Integer      :: iclfail, ICORRO, icrkpi, ifba  , ihbs  , iHe     ,  &
+                      ihydd  , iloca , IMPLIC, intaxl, ioxide, ioxire  ,  &
+                      iphasezr,iplnum, IPLOT1,                            &
+                      IPLOT2 , IPOINT, IPURE ,                            &
+                      ISCHR1 , ISCHR2, ISLICE, ISTAT , ISTZNE, isurfb  ,  &
+                      ITERM  , ITERMG, itlog ,                            &
+                      ITRNPT (M31MAX),                                    &
+                      kokoko,                                             &
+                      MaxRecNr_mac, MaxRecNr_mic, MaxRecNr_sta,           &
+                      MSTEP , NRSUIS, NUMBER(5), RecNr_sta
+
+      common /B01a/   iclfail, ICORRO, icrkpi, ifba  , ihbs  , iHe     ,  &
+                      ihydd  , iloca , IMPLIC, intaxl, ioxide, ioxire  ,  &
+                      iphasezr,iplnum, IPLOT1,                            &
+                      IPLOT2 , IPOINT, IPURE ,                            &
+                      ISCHR1 , ISCHR2, ISLICE, ISTAT , ISTZNE, isurfb  ,  &
+                      ITERM  , ITERMG, itlog ,                            &
+                      ITRNPT ,                                    &
+                      kokoko,                                             &
+                      MaxRecNr_mac, MaxRecNr_mic, MaxRecNr_sta,           &
+                      MSTEP , NRSUIS, NUMBER, RecNr_sta
+                      
+!     ==================================================================
+!                     Global Data B02
+
+!     --- Logical variables
+
+      Logical      :: AXKONV,                                             &
+                      CLADRP(M31MAX), ISCHMB(M31MAX), ISCHMH(M31MAX),     &
+                      LXKONV(M31MAX), MKONV,          SKONV (M31MAX),     &
+                      THANLY(M31MAX), TKONV, TRANSA,                      &
+                      MacroTime        ,                                  &   ! indicates "macro time"
+                      MacroTime_zero   ,                                  &
+                      MacroTime_end    ,                                  &
+                      MacroTime_restart,                                  &
+                      Normal_end,                                         &
+                      Cladrp_glob,                                        &
+                      Change_of_Geometry,                                 &
+                      Conv_large_strain, plenum
+
+      common /B02/    AXKONV,                                             &
+                      CLADRP, ISCHMB, ISCHMH,     &
+                      LXKONV, MKONV,          SKONV ,     &
+                      THANLY, TKONV, TRANSA,                      &
+                      MacroTime        ,                                  &   ! indicates "macro time"
+                      MacroTime_zero   ,                                  &
+                      MacroTime_end    ,                                  &
+                      MacroTime_restart,                                  &
+                      Normal_end,                                         &
+                      Cladrp_glob,                                        &
+                      Change_of_Geometry,                                 &
+                      Conv_large_strain, plenum
+
+!     ==================================================================
+!                     Global Data B03
+
+!     --- Geometrical quantities
+
+      Real         :: DAL(M31MAX),HB(M3MAX),HBREF(M3MAX),HH(M31MAX),      &
+                      HHREF(M31MAX),PiNumb,RBA(M31MAX),RBI(M31MAX),       &
+                      REF(IGRMAX,IFEMAX,2),                               &
+                      REFBA(M31MAX),REFBA0(M31MAX),                       &
+                      REFBI(M31MAX),REFBI0(M31MAX),                       &
+                      REFHA(M31MAX),REFHA0(M31MAX),                       &
+                      REFHI(M31MAX),REFHI0(M31MAX),                       &
+                      RHA(M32MAX),RHI(M32MAX),                            &
+                      HBSwidth (m31max,2),                                &
+                      RISSL(M31MAX),RMELT(M31MAX,2,2,2),                  &
+                      RMaxTFu(M31MAX),RRVEK(IGRMAX,IFEMAX,2),             &
+                      RSTRU(10,2),SDLTCL(M31MAX),                         &
+                      SOXIDE(M31MAX,2),SOXIDE_in(M31MAX,2),               &
+                      UDOTFI(M31MAX), UDOTFO(M31MAX),                     &
+                      WB(M31MAX),WH(M32MAX),WREL(M31MAX),                 &
+                      ZB(M31MAX),ZBREF(M31MAX),ZH(M32MAX),ZHREF(M32MAX),  &
+                      oxlayer(M31MAX),WOX(M31MAX),AUX(M31MAX),            &
+                      Delta_r(igrmax,ifemax,2)
+
+        common /B03/  DAL,HB,HBREF,HH,      &
+                      HHREF,PiNumb,RBA,RBI,       &
+                      REF,                               &
+                      REFBA,REFBA0,                       &
+                      REFBI,REFBI0,                       &
+                      REFHA,REFHA0,                       &
+                      REFHI,REFHI0,                       &
+                      RHA,RHI,                            &
+                      HBSwidth ,                                &
+                      RISSL,RMELT,                  &
+                      RMaxTFu,RRVEK,             &
+                      RSTRU,SDLTCL,                         &
+                      SOXIDE,SOXIDE_in,               &
+                      UDOTFI, UDOTFO,                     &
+                      WB,WH,WREL,                 &
+                      ZB,ZBREF,ZH,ZHREF,  &
+                      oxlayer,WOX,AUX,            &
+                      Delta_r
+
+!     ==================================================================
+!                     Global Data B04
+
+!     --- Mechanics
+
+      Real         :: AEQUER(M3MAX,2),AREACL(M31MAX),AREAFU(M31MAX),      &
+                      epsficf(M3MAX),C1(IGRMAX),C2(IGRMAX),C3(IGRMAX),    &
+                      C3JB(M31MAX),C3JH(M31MAX),C3REFB(M31MAX),           &
+                      C3REFH(M31MAX), cvdivt (m31max),                    &
+                      EMOD  (IGRMAX), EMODCL (M31MAX),                    &
+                      EMODFU(M31MAX),EPS0B(M3MAX),EPS0H(M3MAX),ERESGR,    &
+                      ETA(IGRMAX,IFEMAX,3,12),ETAALT(M31MAX),ETACRP,      &
+                      ETA10(IGRMAX,IFEMAX,3),                             &
+                      ETA11(IGRMAX,IFEMAX,3),ETA12(IGRMAX,IFEMAX,3),      &
+                      ETA3(IGRMAX,IFEMAX,3),ETA5(IGRMAX,IFEMAX,3),        &
+                      ETA6(IGRMAX,IFEMAX,3),ETA7(IGRMAX,IFEMAX,3),        &
+                      ETA8(IGRMAX,IFEMAX,3),ETA9(IGRMAX,IFEMAX,3),        &
+                      FMUEF,FMUEH,FNUE(IGRMAX),FNUECL(M31MAX),            &
+                      FNUEFU(M31MAX),G(18,IGRMAX),INT1(IGRMAX,IFEMAX),    &
+                      INT2(IGRMAX,IFEMAX),INT3(IGRMAX,IFEMAX),            &
+                      INT4(IGRMAX),PLAST1(IGRMAX,IFEMAX),RELO(M31MAX),    &
+                      SIGAVE(2,4,M31MAX),SIGMA(IGRMAX,IFEMAX,4,2),        &
+                      SIGS(IGRMAX,IFEMAX), RadDef_u (igrmax,ifemax),      &
+                      VISCOK(IGRMAX,M31MAX),ZKMIN,                        &
+                      lim_cr(M31MAX),TSEC_NORM(IGRMAX,IFEMAX,2),          &
+                      TRUPT_NORM(IGRMAX,IFEMAX,2),                        &
+                      Epseff_th(IGRMAX,IFEMAX,2),                   &
+                      Epseff_irr(IGRMAX,IFEMAX,2)
+
+        common /B04/  AEQUER,AREACL,AREAFU,      &
+                      epsficf,C1,C2,C3,    &
+                      C3JB,C3JH,C3REFB,           &
+                      C3REFH, cvdivt ,                    &
+                      EMOD  , EMODCL ,                    &
+                      EMODFU,EPS0B,EPS0H,ERESGR,    &
+                      ETA,ETAALT,ETACRP,      &
+                      ETA10,                             &
+                      ETA11,ETA12,      &
+                      ETA3,ETA5,        &
+                      ETA6,ETA7,        &
+                      ETA8,ETA9,        &
+                      FMUEF,FMUEH,FNUE,FNUECL,            &
+                      FNUEFU,G,INT1,    &
+                      INT2,INT3,            &
+                      INT4,PLAST1,RELO,    &
+                      SIGAVE,SIGMA,        &
+                      SIGS, RadDef_u ,      &
+                      VISCOK,ZKMIN,                        &
+                      lim_cr,TSEC_NORM,          &
+                      TRUPT_NORM,                        &
+                      Epseff_th,                   &
+                      Epseff_irr
+
+!     ==================================================================
+!                     Global Data B04a
+
+!     --- Mechanics: average strains in cladding
+
+!                     EpsEffCl_crp = average effective creep strain
+!                     S_depsCl_crp = sum of the effective
+!                                    creep strain increments
+!                     EpsEffCl_pla = average effective plastic strain
+!                     S_depsCl_pla = sum of the effective
+!                                    plastic strain increments
+!                     EpsTanCl_tot = average permanent tangential strain
+!                     Eps_OMCl_tot = total tangential strain at O/M interface
+
+      Real         :: EpsEffCl_crp (m31max)  ,                            &
+                      S_depsCl_crp (m31max,2),                            &
+                      EpsEffCl_pla (m31max)  ,                            &
+                      S_depsCl_pla (m31max,2),                            &
+                      EpsTanCl_tot (m31max)  ,                            &
+                      Eps_OMCl_tot (m31max)
+
+      common /B04a/         EpsEffCl_crp   ,                            &
+                            S_depsCl_crp ,                            &
+                            EpsEffCl_pla   ,                            &
+                            S_depsCl_pla ,                            &
+                            EpsTanCl_tot   ,                            &
+                            Eps_OMCl_tot
+!     ==================================================================
+!                     Global Data B04b
+
+!     --- Mechanics: time integral of effective stress
+!                    applied for the primary creep of cladding
+
+      Real         :: sigmaefftime (IGRMAX, IFEMAX, 2),                   &
+                      ETAstat      (IGRMAX, IFEMAX, 2)
+
+      common /B04b/   sigmaefftime ,                   &
+                      ETAstat
+!     ==================================================================
+!                     Global Data B06
+
+!     --- Forces and weights
+
+      Real         :: FJ(M31MAX),FSPRNG,GEWB(M31MAX),GEWH(M31MAX),        &
+                      HAFT   (M31MAX),                                    &
+                      PJ     (M31MAX),                                    &
+                      PAXIAL (M31MAX),                                    &
+                      REIB   (M31MAX)
+
+      common /B06/    FJ,FSPRNG,GEWB,GEWH,        &
+                      HAFT   ,                                    &
+                      PJ     ,                                    &
+                      PAXIAL ,                                    &
+                      REIB          
+!     ==================================================================
+!                     Global Data B07a
+!                 Fields to solve systems of equations
+
+!             B07a    :    bidiagonal ( see denmig )
+!                     :   tridiagonal ( see temp   )
+!                     : pentadiagonal ( see puimpl )
+
+      Double Precision ::                                                 &
+                       udia1 (ieqnta),                                    &
+                       udia2 (ieqnta),                                    &
+                       hdiag (ieqnta),                                    &
+                       odia1 (ieqnta),                                    &
+                       odia2 (ieqnta),                                    &
+                       rside (ieqnta),                                    &
+                       xsolu (ieqnta)
+      common /B07a/        udia1 ,                                    &
+                           udia2 ,                                    &
+                           hdiag ,                                    &
+                           odia1 ,                                    &
+                           odia2 ,                                    &
+                           rside ,                                    &
+                           xsolu 
+
+!     ==================================================================
+!                     Global Data B07b
+!             B07b    : full matrix (mechanics)
+
+      Double Precision ::                                                 &
+                       aorg    (ieqnme,ieqnme),                           &
+                       amodval (ieqnme,ieqnme),                           &
+                       rorg    (ieqnme),                                  &
+                       rmod    (ieqnme),                                  &
+                       xgau    (ieqnme),                                  &
+                       diag    (ieqnme),                                  &
+                       epsg
+!CC  &                 xdef (ieqnme),
+!CC  &                 xdel (ieqnme),
+
+      Integer      ::  kontr(ieqnme)
+
+      common /B07b/    aorg    ,                           &
+                       amodval ,                           &
+                       rorg    ,                                  &
+                       rmod    ,                                  &
+                       xgau    ,                                  &
+                       diag    ,                                  &
+                       epsg    ,               &
+                       kontr
+!     ==================================================================
+!                     Global Data B08a
+!                     Temperature and energy
+
+
+      Real         :: ANTLIQ(M31MAX,2),CHI(IGRMAX,IFEMAX,2),              &
+                      CHIK (M31MAX,2),                                    &
+                      HFBDYI(M31MAX),HFBDYO(M31MAX),                      &
+                      HFBYSI(M31MAX),                                     &
+                      TEBA(M31MAX),TEBI(M31MAX),                          &
+                      AvTempFu(M31MAX,2),MaxTempFu(M31MAX),               &
+                      TEBDYI(M31MAX),TEBDYO(M31MAX),                      &
+                      TEBYSI(M31MAX),  TEHA(M31MAX),                      &
+                      TEHI(M31MAX),AvTempCl(M31MAX,2),TEMPS(8),           &
+                      TETA(IGRMAX,IFEMAX,4),TETAK(M31MAX,2),              &
+                      TETAS(10,2,2),TETKIN(M31MAX),TETYIN(M31MAX),        &
+                      TSTRA(M31MAX),TSTRI(M31MAX),T23INP,T34INP,          &
+                      Chil01, Tcoli1, TemperatureUP,                      &
+                      SOLTMK(IGRMAX,IFEMAX),LIQTMK(IGRMAX,IFEMAX)
+
+      common /B08a/   ANTLIQ,CHI,              &
+                      CHIK ,                                    &
+                      HFBDYI,HFBDYO,                      &
+                      HFBYSI,                                     &
+                      TEBA,TEBI,                          &
+                      AvTempFu,MaxTempFu,               &
+                      TEBDYI,TEBDYO,                      &
+                      TEBYSI,  TEHA,                      &
+                      TEHI,AvTempCl,TEMPS,           &
+                      TETA,TETAK,              &
+                      TETAS,TETKIN,TETYIN,        &
+                      TSTRA,TSTRI,T23INP,T34INP,          &
+                      Chil01, Tcoli1, TemperatureUP,                      &
+                      SOLTMK,LIQTMK
+
+!     ==================================================================
+!                     Global Data B08b
+!                     Temperature and energy
+
+      Double Precision ::                                                 &
+                      EnInj_F (M31MAX),                                   &
+                      EnInj_C (M31MAX),                                   &
+                      EnInj_S (M31MAX)
+      Real         ::                                                     &
+                      Entha_L (igrmax,ifemax,2),                          &
+                      Entha_F (m31max,2),                                 &
+                      Entha_C (m31max,2),                                 &
+                      Entha_S (m31max,2),                                 &
+                      Entha_F_Ttrans (m31max),                            &
+                      Entha_C_Ttrans (m31max),                            &
+                      Entlpy_max_c   (m31max),                            &
+                      Entlpy_max_f   (m31max)
+
+      common /B08b/   EnInj_F ,                                   &
+                      EnInj_C ,                                   &
+                      EnInj_S , &
+                      Entha_L ,                          &
+                      Entha_F ,                                 &
+                      Entha_C ,                                 &
+                      Entha_S ,                                 &
+                      Entha_F_Ttrans ,                            &
+                      Entha_C_Ttrans ,                            &
+                      Entlpy_max_c   ,                            &
+                      Entlpy_max_f   
+
+!     ==================================================================
+!                     Global Data B08c
+
+      Integer , Dimension (m31max) :: thbdyi, thbdyo, thbysi
+
+      common /B08c/ thbdyi, thbdyo, thbysi
+!     ==================================================================
+!                     Global Data B09a
+!     --- Neutron flux, power and burn-up
+
+      Integer      :: FormfAx
+
+      Real         :: BRNUP1 (M31MAX,2),BRNUP_EFF1 (M31MAX,2),            &
+                      BRNUP3(IGRMAX,IFEMAX,2),BRNUP_EFF3(IGRMAX,IFEMAX,2),&
+                      BUFIMQ (M31MAX),                                    &
+                      CNPU1  (M31MAX,2),                                  &
+                      CNPU3  (IGRMAX,IFEMAX,2),                           &
+                      CNAM3  (IGRMAX,IFEMAX,2),                           &
+                      EQNL(M31MAX),FASTLF,FDEPL(M31MAX),FGAMLH(M31MAX),   &
+                      FGAMLK(M31MAX),FGAMLS(M31MAX),                      &
+                      FLUXL(M31MAX),FLUXTI(M31MAX,2),                     &
+                      FORMF (IGRMAX,IFEMAX), FORMQ (IGRMAX,IFEMAX),       &
+                      FormfExtVal (IGRMAX,IFEMAX,2),                      &
+                      FormfExtAux (IGRMAX,IFEMAX),                        &
+                      OZUM1(M31MAX,2),                                    &
+                      OZUM3(IGRMAX,IFEMAX,2),Q1NEW(M31MAX),               &
+                      Q1VEK(M31MAX,2),Q2BH(M31MAX,2),Q2HK(M31MAX,2),      &
+                      Q2KS(M31MAX,2),Q2SB(M31MAX,2),Q2ZB(M31MAX,2),       &
+                      Q3SVEK(10,2,2),Q3VEK(IGRMAX,IFEMAX,2),RESESC
+
+      Double Precision ::                                                 &
+                      FormfExtT1, FormfExtT2
+
+      common /B09a/   FormfAx, &
+                      BRNUP1 ,BRNUP_EFF1 ,            &
+                      BRNUP3,BRNUP_EFF3,&
+                      BUFIMQ ,                                    &
+                      CNPU1  ,                                  &
+                      CNPU3  ,                           &
+                      CNAM3  ,                           &
+                      EQNL,FASTLF,FDEPL,FGAMLH,   &
+                      FGAMLK,FGAMLS,                      &
+                      FLUXL,FLUXTI,                     &
+                      FORMF , FORMQ ,       &
+                      FormfExtVal ,                      &
+                      FormfExtAux ,                        &
+                      OZUM1,                                    &
+                      OZUM3,Q1NEW,               &
+                      Q1VEK,Q2BH,Q2HK,      &
+                      Q2KS,Q2SB,Q2ZB,       &
+                      Q3SVEK,Q3VEK,RESESC,&                                   
+                      FormfExtT1, FormfExtT2
+!     ==================================================================
+!                     Global Data B09b
+
+      Integer      :: IBRUT(M31MAX)
+
+      common /B09b/ IBRUT
+!     ==================================================================
+!                     Global Data B09ci
+!     --- Actinide and He Concentration Increments
+
+      Real         ::   Th232LocalI   (igrmax, ifemax),    &
+                        Pa233LocalI   (igrmax, ifemax),    &
+                         U232LocalI   (igrmax, ifemax),    &
+                         U233LocalI   (igrmax, ifemax),    &
+                         U234LocalI   (igrmax, ifemax),    &
+                         U235LocalI   (igrmax, ifemax),    &
+                         U236LocalI   (igrmax, ifemax),    &
+                         U237LocalI   (igrmax, ifemax),    &
+                         U238LocalI   (igrmax, ifemax),    &
+                         U239LocalI   (igrmax, ifemax),    &
+                        Np237LocalI   (igrmax, ifemax),    &
+                        Np238LocalI   (igrmax, ifemax),    &
+                        Np239LocalI   (igrmax, ifemax),    &
+                        Np240LocalI   (igrmax, ifemax),    &
+                        Pu238LocalI   (igrmax, ifemax),    &
+                        Pu239LocalI   (igrmax, ifemax),    &
+                        Pu240LocalI   (igrmax, ifemax),    &
+                        Pu241LocalI   (igrmax, ifemax),    &
+                        Pu242LocalI   (igrmax, ifemax),    &
+                        Pu243LocalI   (igrmax, ifemax),    &
+                        Am241LocalI   (igrmax, ifemax),    &
+                        Am242LocalI   (igrmax, ifemax),    &
+                        Am243LocalI   (igrmax, ifemax),    &
+                        Am244LocalI   (igrmax, ifemax),    &
+                        Cm242LocalI   (igrmax, ifemax),    &
+                        Cm243LocalI   (igrmax, ifemax),    &
+                        Cm244LocalI   (igrmax, ifemax),    &
+                        Cm245LocalI   (igrmax, ifemax),    &
+                        Cm246LocalI   (igrmax, ifemax),    &
+                          He4LocalI   (igrmax, ifemax),    &
+                         He4ALocalI   (igrmax, ifemax),    &
+                         He4BLocalI   (igrmax, ifemax),    &
+                        PA238LocalI   (igrmax, ifemax),    &
+                        PB238LocalI   (igrmax, ifemax)
+
+      common /B09ci/    Th232LocalI   ,    &
+                        Pa233LocalI   ,    &
+                         U232LocalI   ,    &
+                         U233LocalI   ,    &
+                         U234LocalI   ,    &
+                         U235LocalI   ,    &
+                         U236LocalI   ,    &
+                         U237LocalI   ,    &
+                         U238LocalI   ,    &
+                         U239LocalI   ,    &
+                        Np237LocalI   ,    &
+                        Np238LocalI   ,    &
+                        Np239LocalI   ,    &
+                        Np240LocalI   ,    &
+                        Pu238LocalI   ,    &
+                        Pu239LocalI   ,    &
+                        Pu240LocalI   ,    &
+                        Pu241LocalI   ,    &
+                        Pu242LocalI   ,    &
+                        Pu243LocalI   ,    &
+                        Am241LocalI   ,    &
+                        Am242LocalI   ,    &
+                        Am243LocalI   ,    &
+                        Am244LocalI   ,    &
+                        Cm242LocalI   ,    &
+                        Cm243LocalI   ,    &
+                        Cm244LocalI   ,    &
+                        Cm245LocalI   ,    &
+                        Cm246LocalI   ,    &
+                          He4LocalI   ,    &
+                         He4ALocalI   ,    &
+                         He4BLocalI   ,    &
+                        PA238LocalI   ,    &
+                        PB238LocalI   
+!     ==================================================================
+!                     Global Data B09c
+
+!     --- Actinide and He Concentrations
+
+      Real          ::  Th232Local   (igrmax, ifemax, 2),  &
+                        Pa233Local   (igrmax, ifemax, 2),  &
+                         U232Local   (igrmax, ifemax, 2),  &
+                         U233Local   (igrmax, ifemax, 2),  &
+                         U234Local   (igrmax, ifemax, 2),  &
+                         U235Local   (igrmax, ifemax, 2),  &
+                         U236Local   (igrmax, ifemax, 2),  &
+                         U237Local   (igrmax, ifemax, 2),  &
+                         U238Local   (igrmax, ifemax, 2),  &
+                         U239Local   (igrmax, ifemax, 2),  &
+                        Np237Local   (igrmax, ifemax, 2),  &
+                        Np238Local   (igrmax, ifemax, 2),  &
+                        Np239Local   (igrmax, ifemax, 2),  &
+                        Np240Local   (igrmax, ifemax, 2),  &
+                        Pu238Local   (igrmax, ifemax, 2),  &
+                        Pu239Local   (igrmax, ifemax, 2),  &
+                        Pu240Local   (igrmax, ifemax, 2),  &
+                        Pu241Local   (igrmax, ifemax, 2),  &
+                        Pu242Local   (igrmax, ifemax, 2),  &
+                        Pu243Local   (igrmax, ifemax, 2),  &
+                        Am241Local   (igrmax, ifemax, 2),  &
+                        Am242Local   (igrmax, ifemax, 2),  &
+                        Am243Local   (igrmax, ifemax, 2),  &
+                        Am244Local   (igrmax, ifemax, 2),  &
+                        Cm242Local   (igrmax, ifemax, 2),  &
+                        Cm243Local   (igrmax, ifemax, 2),  &
+                        Cm244Local   (igrmax, ifemax, 2),  &
+                        Cm245Local   (igrmax, ifemax, 2),  &
+                        Cm246Local   (igrmax, ifemax, 2),  &
+                          He4Local   (igrmax, ifemax, 2),  &
+                         He4ALocal   (igrmax, ifemax, 2),  &
+                         He4BLocal   (igrmax, ifemax, 2),  &
+                        PA238Local   (igrmax, ifemax, 2),  &
+                        PB238Local   (igrmax, ifemax, 2)
+
+common /B09c/           Th232Local   ,  &
+                        Pa233Local   ,  &
+                         U232Local   ,  &
+                         U233Local   ,  &
+                         U234Local   ,  &
+                         U235Local   ,  &
+                         U236Local   ,  &
+                         U237Local   ,  &
+                         U238Local   ,  &
+                         U239Local   ,  &
+                        Np237Local   ,  &
+                        Np238Local   ,  &
+                        Np239Local   ,  &
+                        Np240Local   ,  &
+                        Pu238Local   ,  &
+                        Pu239Local   ,  &
+                        Pu240Local   ,  &
+                        Pu241Local   ,  &
+                        Pu242Local   ,  &
+                        Pu243Local   ,  &
+                        Am241Local   ,  &
+                        Am242Local   ,  &
+                        Am243Local   ,  &
+                        Am244Local   ,  &
+                        Cm242Local   ,  &
+                        Cm243Local   ,  &
+                        Cm244Local   ,  &
+                        Cm245Local   ,  &
+                        Cm246Local   ,  &
+                          He4Local   ,  &
+                         He4ALocal   ,  &
+                         He4BLocal   ,  &
+                        PA238Local   ,  &
+                        PB238Local   
+!     ==================================================================
+!                     Global Data B09d
+
+
+      Real           :: Th232Section (m31max, 2),          &
+                        Pa233Section (m31max, 2),          &
+                         U232Section (m31max, 2),          &
+                         U233Section (m31max, 2),          &
+                         U234Section (m31max, 2),          &
+                         U235Section (m31max, 2),          &
+                         U236Section (m31max, 2),          &
+                         U237Section (m31max, 2),          &
+                         U238Section (m31max, 2),          &
+                         U239Section (m31max, 2),          &
+                        Np237Section (m31max, 2),          &
+                        Np238Section (m31max, 2),          &
+                        Np239Section (m31max, 2),          &
+                        Np240Section (m31max, 2),          &
+                        Pu238Section (m31max, 2),          &
+                        Pu239Section (m31max, 2),          &
+                        Pu240Section (m31max, 2),          &
+                        Pu241Section (m31max, 2),          &
+                        Pu242Section (m31max, 2),          &
+                        Pu243Section (m31max, 2),          &
+                        Am241Section (m31max, 2),          &
+                        Am242Section (m31max, 2),          &
+                        Am243Section (m31max, 2),          &
+                        Am244Section (m31max, 2),          &
+                        Cm242Section (m31max, 2),          &
+                        Cm243Section (m31max, 2),          &
+                        Cm244Section (m31max, 2),          &
+                        Cm245Section (m31max, 2),          &
+                        Cm246Section (m31max, 2),          &
+                          He4Section (m31max, 2),          &
+                         He4ASection (m31max, 2),          &
+                         He4BSection (m31max, 2),          &
+                        PA238Section (m31max, 2),          &
+                        PB238Section (m31max, 2)
+
+ common /B09d/           Th232Section ,          &
+                        Pa233Section ,          &
+                         U232Section ,          &
+                         U233Section ,          &
+                         U234Section ,          &
+                         U235Section ,          &
+                         U236Section ,          &
+                         U237Section ,          &
+                         U238Section ,          &
+                         U239Section ,          &
+                        Np237Section ,          &
+                        Np238Section ,          &
+                        Np239Section ,          &
+                        Np240Section ,          &
+                        Pu238Section ,          &
+                        Pu239Section ,          &
+                        Pu240Section ,          &
+                        Pu241Section ,          &
+                        Pu242Section ,          &
+                        Pu243Section ,          &
+                        Am241Section ,          &
+                        Am242Section ,          &
+                        Am243Section ,          &
+                        Am244Section ,          &
+                        Cm242Section ,          &
+                        Cm243Section ,          &
+                        Cm244Section ,          &
+                        Cm245Section ,          &
+                        Cm246Section ,          &
+                          He4Section ,          &
+                         He4ASection ,          &
+                         He4BSection ,          &
+                        PA238Section ,          &
+                        PB238Section 
+!     ==================================================================
+!                     Global Data B09e
+!     --- further variables needed for LWR burnup eqs.
+
+
+      Real         ::    NTOT   (M31MAX),                  &
+                      ENRITh232 (M31MAX),                  &
+                      ENRIPa233 (M31MAX),                  &
+                      ENRIU232  (M31MAX),                  &
+                      ENRIU233  (M31MAX),                  &
+                      ENRIU234  (M31MAX),                  &
+                      ENRIU235  (M31MAX),                  &
+                      ENRIU236  (M31MAX),                  &
+                      ENRINp237 (M31MAX),                  &
+                      ENRIPu238 (M31MAX),                  &
+                      ENRIPu239 (M31MAX),                  &
+                      ENRIPu240 (M31MAX),                  &
+                      ENRIPu241 (M31MAX),                  &
+                      ENRIPu242 (M31MAX),                  &
+                      ENRIAm241 (M31MAX),                  &
+                      ENRIAm243 (M31MAX),                  &
+                      ENRICm242 (M31MAX),                  &
+                      ENRICm243 (M31MAX),                  &
+                      ENRICm244 (M31MAX),                  &
+                      ENRICm245 (M31MAX),                  &
+                      ENRICm246 (M31MAX)
+
+      common /B09e/   NTOT  ,                  &
+                      ENRITh232,                  &
+                      ENRIPa233,                  &
+                      ENRIU232 ,                  &
+                      ENRIU233 ,                  &
+                      ENRIU234 ,                  &
+                      ENRIU235 ,                  &
+                      ENRIU236 ,                  &
+                      ENRINp237,                  &
+                      ENRIPu238,                  &
+                      ENRIPu239,                  &
+                      ENRIPu240,                  &
+                      ENRIPu241,                  &
+                      ENRIPu242,                  &
+                      ENRIAm241,                  &
+                      ENRIAm243,                  &
+                      ENRICm242,                  &
+                      ENRICm243,                  &
+                      ENRICm244,                  &
+                      ENRICm245,                  &
+                      ENRICm246
+
+!     ==================================================================
+!                     Global Data B10
+!     --- Time step control
+
+      Double Precision ::                                                 &
+                      DEPS,                                               &
+                      DT,DTALT,DTITAL,DTMAX,DTMIN,dtnew,DT000,T,          &
+                      TALT,TE,TIMEAN(40),TINTRU,TITALT,TNEXT,TTRANS
+
+      Real         :: ZEITFA,SPEPS
+
+      common /B10/    DEPS,                                               &
+                      DT,DTALT,DTITAL,DTMAX,DTMIN,dtnew,DT000,T,          &
+                      TALT,TE,TIMEAN,TINTRU,TITALT,TNEXT,TTRANS,      &
+                      ZEITFA,SPEPS
+!     ==================================================================
+!                     Global Data B11a
+
+!     --- Material properties and options
+
+      Real         :: cpvek (igrmax,ifemax,2), cpsvek (10,2,2),           &
+                      lavek (igrmax,ifemax,2), lasvek (10,2,2),           &
+                      rovek (igrmax,ifemax,2), rosvek (10,2,2),           &
+                      loxide (m31max)
+      
+      common /B11a/   cpvek , cpsvek ,           &
+                      lavek , lasvek ,           &
+                      rovek , rosvek ,           &
+                      loxide 
+
+!     ==================================================================
+!                     Global Data B11b
+
+      Integer      :: MatProp_fuel (M31MAX,20), MatProp_clad (20),        &
+                      MatProp_strc (M31MAX,10), MatProp_cool (10)
+
+      
+      common /B11b/   MatProp_fuel , MatProp_clad ,        &
+                      MatProp_strc , MatProp_cool 
+!     ==================================================================
+!                     Global Data B12a
+
+!     --- Porosity, grain size and structural data
+
+      Real         :: beta, ColdWo, nCracks,                              &
+                      CRKPOR (IGRMAX,IFEMAX,2),                           &
+                      RelocVol (m31max,2),                                &
+                      DENBUP (m31max), DENPOR (m31max), DKORN (m31max),   &
+                      EPSTAU(IGRMAX,IFEMAX,2),                            &
+                      FtxRad, FtxTan, FtxAxi,                             &
+                      GASPOR(IGRMAX,IFEMAX,2),GEFUEG(M31MAX,4),G23INP,    &
+                      G34INP,KORNGR(IGRMAX,IFEMAX,2),                     &
+                      PFEIN  (m31max),                                    &
+                      PGRO1  (m31max), PGRO2 (m31max), PGRO3 (m31max),    &
+                      POR000 (m31max),                                    &
+                      POROSI (IGRMAX,IFEMAX),                             &
+                      PorHBS ( igrmax, ifemax, 2),                        &
+                      PRODIS (M31MAX), OpenPor (m31max,2),                &
+                      PorHe (m31max),                                     &
+                      P23INP, P34INP,                                     &
+                      RGRO1  (m31max), RGRO2 (m31max), RGRO3 (m31max),    &
+                      RSNTR0,RZENKA(M31MAX),SINPOR(IGRMAX,IFEMAX,2),      &
+                      TETAGR,TSINT0,WEGLAE(IGRMAX,IFEMAX)
+
+      common /B12a/   beta, ColdWo, nCracks,                              &
+                      CRKPOR ,                           &
+                      RelocVol ,                                &
+                      DENBUP , DENPOR , DKORN ,   &
+                      EPSTAU,                            &
+                      FtxRad, FtxTan, FtxAxi,                             &
+                      GASPOR,GEFUEG,G23INP,    &
+                      G34INP,KORNGR,                     &
+                      PFEIN  ,                                    &
+                      PGRO1  , PGRO2 , PGRO3 ,    &
+                      POR000 ,                                    &
+                      POROSI ,                             &
+                      PorHBS ,                        &
+                      PRODIS , OpenPor ,                &
+                      PorHe ,                                     &
+                      P23INP, P34INP,                                     &
+                      RGRO1  , RGRO2 , RGRO3 ,    &
+                      RSNTR0,RZENKA,SINPOR,      &
+                      TETAGR,TSINT0,WEGLAE
+
+
+!     ==================================================================
+!                     Global Data B12b
+
+      Integer      :: IGEFUE(IGRMAX,IFEMAX)
+
+      common /B12b/ IGEFUE  
+!     ==================================================================
+!                     Global Data B13b
+
+!     --- Heat transfer
+
+      Real         :: ALPHAL(M31MAX),ALPHIN(M31MAX),ALPHKS(M31MAX,2),     &
+                      ALPHSB,ALSB,AOPL,ASP,AZK,                           &
+                      BUFREI(M31MAX),CANF(10),CGAOPL(10),CGAUPL(10),      &
+                      CONGAS(10,M31MAX),                                  &
+                      GASKON,                                             &
+                      gastot(10,2),                                       &
+                      HGAP(M31MAX),HGAPIN(M31MAX),PAL(M31MAX),PIOPL,      &
+                      PISPL(M31MAX),PIUPL,PIX,PIZKL(M31MAX),              &
+                      PKONTA(M31MAX,2),RAUBL(M31MAX),RAUHL(M31MAX),       &
+                      SPALTW(M31MAX,2),VOLD,VOLK,VOLS,Volr,VPO,VPU
+
+      Integer      :: NOX(10)
+
+      common /B13b/   ALPHAL,ALPHIN,ALPHKS,     &
+                      ALPHSB,ALSB,AOPL,ASP,AZK,                           &
+                      BUFREI,CANF,CGAOPL,CGAUPL,      &
+                      CONGAS,                                  &
+                      GASKON,                                             &
+                      gastot,                                       &
+                      HGAP,HGAPIN,PAL,PIOPL,      &
+                      PISPL,PIUPL,PIX,PIZKL,              &
+                      PKONTA,RAUBL,RAUHL,       &
+                      SPALTW,VOLD,VOLK,VOLS,Volr,VPO,VPU,     &
+            NOX
+
+!     ==================================================================
+!                     Global Data B13c
+
+      Integer      :: IEINLA(M31MAX)
+
+      common /B13c/ IEINLA
+!     ==================================================================
+!                     Global Data B14a
+
+!     --- Coolant and coolant blockage model
+
+      Real         :: CKUEKA,CKVEK(M31MAX,2),EKVEK(M31MAX,2),             &
+                      FGVEK(M31MAX,2),FKVEK(M31MAX,2),GKL(M31MAX),        &
+                      HSVEK(M31MAX,2),MKVEK(M31MAX,2),PKVEK(M31MAX,2),    &
+                      QKL(M31MAX),QKVEK(M31MAX,2),RHVEK(M31MAX,2),        &
+                      RKVEK(M31MAX,2),RSVEK(M31MAX),SKL(M31MAX),          &
+                      SKVEK(M31MAX,2),VHVEK(M31MAX,2),VPVEK(M31MAX),      &
+                      WK(M31MAX)
+
+      common /B14a/   CKUEKA,CKVEK,EKVEK,             &
+                      FGVEK,FKVEK,GKL,        &
+                      HSVEK,MKVEK,PKVEK,    &
+                      QKL,QKVEK,RHVEK,        &
+                      RKVEK,RSVEK,SKL,          &
+                      SKVEK,VHVEK,VPVEK,      &
+                      WK             
+!     ==================================================================
+!                     Global Data B14b
+
+      Integer      :: LSTERN(M31MAX)
+
+      common /B14b/ LSTERN
+!     ==================================================================
+!                     Global Data B15a
+
+!     --- Blind variables
+
+      Real         ::                                                     &
+                      Opti06 (m31max),                                    &
+                      Opti07 (m31max),                                    &
+                      Opti15 (m31max),                                    &
+                      Temp_pl_low, Temp_pl_up, Opti27, Opti28, Opti29,    &
+                      RRRR1,RRRR2,RRRR3,RRRR4,RRRR5
+
+      common /B15b/   Opti06 ,                                    &
+                      Opti07 ,                                    &
+                      Opti15 ,                                    &
+                      Temp_pl_low, Temp_pl_up, Opti27, Opti28, Opti29,    &
+                      RRRR1,RRRR2,RRRR3,RRRR4,RRRR5
+
+
+!     ==================================================================
+!                     Global Data B15b
+
+      Integer      :: IIII1,IIII2,IIII3,IIII4,IIII5
+
+      common /B15b/ IIII1,IIII2,IIII3,IIII4,IIII5
+!     ==================================================================
+!                     Global Data B16
+
+!     --- Variables determining convergence
+
+      Real         :: KOAXKO(8),KOMECH(8),KOTEMP(8),KOURAN(8)
+
+      common /B16/ KOAXKO,KOMECH,KOTEMP,KOURAN
+!     ==================================================================
+!                     Global Data B19a
+
+!     --- Data transfer
+
+      Integer          :: i4_comp (i4_compm)
+      Real             :: r4_comp (r4_compm)
+      Double Precision :: r8_comp (r8_compm)
+
+      Real         :: datfe3 (idatf3),                                    &
+                      datfe4 (idatf4),                                    &
+                      datfe5 (idatf5),                                    &
+                      VSVE1 (IGRMAX,IFEMAX,1),                            &
+                      VSVE2 (IGRMAX,IFEMAX,1), VSVE3 (IGRMAX,IFEMAX,1),   &
+                      VSVE5 (IGRMAX,IFEMAX,3), VSVE6 (IGRMAX,IFEMAX,3),   &
+                      VSVE7 (IGRMAX,IFEMAX,3), VSVE9 (IGRMAX,IFEMAX,3),   &
+                      VSVE10(IGRMAX,IFEMAX,3), VSVE12(IGRMAX,IFEMAX,3)
+
+      common /B19a/   i4_comp,                          &
+                      r4_comp,                          &
+                      r8_comp,                          &
+                      datfe3 ,                                    &
+                      datfe4 ,                                    &
+                      datfe5 ,                                    &
+                      VSVE1 ,                            &
+                      VSVE2 , VSVE3 ,   &
+                      VSVE5 , VSVE6 ,   &
+                      VSVE7 , VSVE9 ,   &
+                      VSVE10, VSVE12
+
+!     ==================================================================
+!                     Global Data B19b
+
+      Integer      :: ibyte,                                              &
+                      RecLength_mic, RecLength_mac, RecLength_sta,        &
+                      len_i4 (m31max),                                    &
+                      len_r4 (m31max),                                    &
+                      len_r8 (m31max)
+
+      common /B19b/   ibyte,                                              &
+                      RecLength_mic, RecLength_mac, RecLength_sta,        &
+                      len_i4 ,                                    &
+                      len_r4 ,                                    &
+                      len_r8 
+!     ==================================================================
+!                     Global Data B20
+
+!     --- MACRO variables
+
+
+      Double Precision ::                                                 &
+                      AWERTP(20,M31MAX),AXVARP(20,M31MAX),                &
+                      AXVAR1(20,M31MAX),AXVAR2(20,M31MAX),DWERT1(30),     &
+                      DWERT2(30),T1,T2,WERTFA(30),WERTP(30),WERT1(30),    &
+                      WERT2(30),DTANFO
+
+      Real         :: Fblind
+
+      common /B20/    AWERTP,AXVARP,                &
+                      AXVAR1,AXVAR2,DWERT1,     &
+                      DWERT2,T1,T2,WERTFA,WERTP,WERT1,    &
+                      WERT2,DTANFO,Fblind
+!     ==================================================================
+!                     Global Data B21c
+
+      Real         :: fairat(20,m31max)
+
+      common /B21c/ fairat
+!     ==================================================================
+!                     Global Data Statistic
+!              Variables related statistical analysis
+
+      Real         ::    Random_Var(30,4,7)
+      Integer      ::    Random_Shape(30,7)
+
+      common /statistic/ Random_Var,Random_Shape
+!     ==================================================================
+!                     Global Data Noise Analysis
+!              Variables related to numerical noise analysis
+
+      Integer      :: INOISE
+
+!                     Factors for Numerical Noise Analysis
+
+!                     FNOISW (30) ... macro time step values WERT
+!                     FNOISB (30) ... material properties, fuel
+!                     FNOISH (30) ... material properties, cladding
+!                     FNOISM (30) ... model uncertainties
+
+      Real         :: FNOISW (30),                                        &
+                      FNOISB (30),                                        &
+                      FNOISH (30),                                        &
+                      FNOISM (30)
+
+      common /Noise/  INOISE,                                         &
+                      FNOISW ,                                        &
+                      FNOISB ,                                        &
+                      FNOISH ,                                        &
+                      FNOISM 
+
+!     ==================================================================
+!                        Global Data FisPro_a
+
+!                        General information
+
+      Integer          ::  FGMech       , & ! model option for fission gas
+                           FGDiff       , & ! model option for fgr
+                           igrbdm           ! model option for grain boundary
+
+      Double Precision ::  gasgb2           ! maximum gas on grain boundary
+
+      Real             ::  gb_conc_const, & ! Constant for gas on grain boundary
+                           gas_gb           ! Input for 'gasgb2' or 'gb_conc_const'
+
+      common /FisPro_a/ FGMech,FGDiff,igrdbm,gasgb2,gb_conc_const,gas_gb
+!     ==================================================================
+!                     Global Data FisPro_b
+
+!            Fission products per unit volume ( umol/mm**3 )
+
+      Double Precision ::  Fpcre3     ( 10, igrmax, ifemax, 2 ),          &
+                           Fpgrn3     ( 10, igrmax, ifemax, 2 ),          &
+                           Fpgrb3     ( 10, igrmax, ifemax, 2 ),          &
+                           Fpath3     ( 10, igrmax, ifemax, 2 ),          &
+                           FpPorHBS3  ( 10, igrmax, ifemax, 2 )
+
+      common /FisPro_b/ Fpcre3,Fpgrn3,Fpgrb3,Fpath3,FpPorHBS3
+!     ==================================================================
+!                     Global Data FisPro_c
+
+!            Fission products per unit length ( umol/mm )
+
+      Real             ::  Fpcre1     ( 10, m31max, 2 ),                  &
+                           Fpgrn1     ( 10, m31max, 2 ),                  &
+                           Fpgrb1     ( 10, m31max, 2 ),                  &
+                           Fpinf1     ( 10, m31max, 2 ),                  &
+                           FpPorHBS1  ( 10, m31max, 2 )
+
+      common /FisPro_c/ Fpcre1,Fpgrn1,Fpgrb1,Fpinf1,FpPorHBS1                    
+!     ==================================================================
+!                     Global Data FisPro_d
+
+!                 Fission products total ( umol )
+
+      Real             ::  Fpcre0     ( 10, 2 ),                          &
+                           Fpgrn0     ( 10, 2 ),                          &
+                           Fpgrb0     ( 10, 2 ),                          &
+                           Fpinf0     ( 10, 2 ),                          &
+                           FpPorHBS0  ( 10, 2 )
+
+      common /FisPro_d/ Fpcre0,Fpgrn0,Fpgrb0,Fpinf0,FpPorHBS0
+!     ==================================================================
+!                  Global Data for the FORMAS model
+
+                                             ! .false., if  URGAS algorithm chosen
+      Logical          :: FORMAS_Algorithm   ! .true.,  if FORMAS algorithm chosen
+                                             !  see subroutine DiffSolv
+
+      Double Precision :: g_FORMAS ( 10, igrmax, ifemax, 6, 2 )
+
+!                                      1. index: 10 fission products
+!                                      4. index: 6 concentrations
+!                                      5. index: time
+
+      Integer          ::  NumbExpTerms
+
+      common /FROMAS/ FORMAS_Algorithm,g_FORMAS,NumbExpTerms
+!     ==================================================================
+!                   Global Data for the IFBA model
+
+      Real             :: He_cre_IFBA    ( m31max, 2 ),     &
+                          Conc_B10_IFBA  ( m31max, 2 ),     &
+                          Conc_U235_IFBA ( m31max, 2 ),     &
+                          Thick_IFBA     ( m31max ),        &
+                          Enr_B10_IFBA   ( m31max ),        &
+                          dHe_tot_IFBA
+
+      common /IFBA/ He_cre_IFBA,Conc_B10_IFBA,Conc_U235_IFBA,Thick_IFBA,&
+                    Enr_B10_IFBA,dHe_tot_IFBA
+!     ==================================================================
+!                   Global data for Gadolinium model
+
+      Integer      ::  IGd
+      Real         ::  Frac155   ( m31max )           ,    &
+                       Frac157   ( m31max )           ,    &
+                       Gd2O3     ( m31max )           ,    &
+                       Gd_tot_1  ( m31max, 2 )        ,    &
+                       Gd_155_1  ( m31max, 2 )        ,    &
+                       Gd_157_1  ( m31max, 2 )        ,    &
+                       Gd_tot_3  ( igrmax, ifemax, 2 ),    &
+                       Gd_155_3  ( igrmax, ifemax, 2 ),    &
+                       Gd_157_3  ( igrmax, ifemax, 2 ),    &
+                       Gd_tot_3I ( igrmax, ifemax )   ,    &
+                       Gd_155_3I ( igrmax, ifemax )   ,    &
+                       Gd_157_3I ( igrmax, ifemax )
+
+       common /Gadolinium/ IGd,                  &
+                       Frac155              ,    &
+                       Frac157              ,    &
+                       Gd2O3                ,    &
+                       Gd_tot_1          ,    &
+                       Gd_155_1          ,    &
+                       Gd_157_1          ,    &
+                       Gd_tot_3  ,    &
+                       Gd_155_3  ,    &
+                       Gd_157_3  ,    &
+                       Gd_tot_3I    ,    &
+                       Gd_155_3I    ,    &
+                       Gd_157_3I 
+!     ==================================================================
+!                   Global data for TUBRNP model
+
+!          - fission cross sections (XSecF)
+
+      Real         ::  sfTh232,                                         &
+                       sfPa233,                                         &
+                       sfU232 , sfU233 , sfU234 , sfU235 , sfU236 ,     &
+                       sfU237 , sfU238 , sfU239 ,                       &
+                       sfNp237, sfNp238, sfNp239, sfNp240,              &
+                       sfPu238, sfPu239, sfPu240,                       &
+                       sfPu241, sfPu242, sfPu243,                       &
+                       sfAm241, sfAm242, sfAm243, sfAm244,              &
+                       sfCm242, sfCm243, sfCm244, sfCm245
+
+!          - neutron capture cross sections  (XSecC)
+
+      Real         ::  scTh232,                                         &
+                       scPa233,                                         &
+                       scU232 , scU233 , scU234 , scU235 , scU236,      &
+                       scU237 , scU238 , scU239 ,                       &
+                       scNp237, scNp238, scNp239, scNp240,              &
+                       scPu238, scPu239, scPu240,                       &
+                       scPu241, scPu242, scPu243,                       &
+                       scAm241, scAm242, scAm243, scAm244,              &
+                       scCm242, scCm243, scCm244, scCm245
+
+!          - absorption cross sections (XSecA)
+
+      Real         ::  saTh232,                                         &
+                       saPa233,                                         &
+                       saU232 , saU233 , saU234 , saU235 , saU236,      &
+                       saU237 , saU238 , saU239 ,                       &
+                       saNp237, saNp238, saNp239, saNp240,              &
+                       saPu238, saPu239, saPu240,                       &
+                       saPu241, saPu242, saPu243,                       &
+                       saAm241, saAm242, saAm243, saAm244,              &
+                       saCm242, saCm243, saCm244, saCm245,              &
+                       slambdaPu241,                                    &
+                       saGd155, saGd157, saO16
+
+!          - thermal scattering cross section (XSecS)
+!            (only for Th containing fuel)
+
+      Real         ::  ssTh232_therm,                                   &
+                       ssPa233_therm,                                   &
+                       ssU232_therm , ssU233_therm , ssU234_therm ,     &
+                       ssU235_therm , ssU236_therm , ssU237_therm ,     &
+                       ssU238_therm , ssU239_therm ,                    &
+                       ssNp237_therm, ssNp238_therm,                    &
+                       ssNp239_therm, ssNp240_therm,                    &
+                       ssPu238_therm, ssPu239_therm, ssPu240_therm,     &
+                       ssPu241_therm, ssPu242_therm, ssPu243_therm,     &
+                       ssAm241_therm, ssAm242_therm,                    &
+                       ssAm243_therm, ssAm244_therm,                    &
+                       ssCm242_therm, ssCm243_therm,                    &
+                       ssCm244_therm, ssCm245_therm
+
+!          - thermal absorption cross sections  (XSecT)
+
+      Real         ::  saTh232_therm,                                   &
+                       saU233_therm , saU235_therm , saU238_therm ,     &
+                       saPu239_therm, saPu240_therm,                    &
+                       saPu241_therm, saPu242_therm ,                   &
+                       saGd155_therm, saGd157_therm
+
+
+!          - identifier of cross section dataset (ixsec)
+
+      Integer      ::  ixsec(m31max)
+
+      common /TUBRNP/  sfTh232,                                         &
+                       sfPa233,                                         &
+                       sfU232 , sfU233 , sfU234 , sfU235 , sfU236 ,     &
+                       sfU237 , sfU238 , sfU239 ,                       &
+                       sfNp237, sfNp238, sfNp239, sfNp240,              &
+                       sfPu238, sfPu239, sfPu240,                       &
+                       sfPu241, sfPu242, sfPu243,                       &
+                       sfAm241, sfAm242, sfAm243, sfAm244,              &
+                       sfCm242, sfCm243, sfCm244, sfCm245,              &
+
+!          - neutron capture cross sections  (XSecC)
+
+                       scTh232,                                         &
+                       scPa233,                                         &
+                       scU232 , scU233 , scU234 , scU235 , scU236,      &
+                       scU237 , scU238 , scU239 ,                       &
+                       scNp237, scNp238, scNp239, scNp240,              &
+                       scPu238, scPu239, scPu240,                       &
+                       scPu241, scPu242, scPu243,                       &
+                       scAm241, scAm242, scAm243, scAm244,              &
+                       scCm242, scCm243, scCm244, scCm245,              &
+
+!          - absorption cross sections (XSecA)
+
+                       saTh232,                                         &
+                       saPa233,                                         &
+                       saU232 , saU233 , saU234 , saU235 , saU236,      &
+                       saU237 , saU238 , saU239 ,                       &
+                       saNp237, saNp238, saNp239, saNp240,              &
+                       saPu238, saPu239, saPu240,                       &
+                       saPu241, saPu242, saPu243,                       &
+                       saAm241, saAm242, saAm243, saAm244,              &
+                       saCm242, saCm243, saCm244, saCm245,              &
+                       slambdaPu241,                                    &
+                       saGd155, saGd157, saO16,                         &
+
+                       ssTh232_therm,                                   &
+                       ssPa233_therm,                                   &
+                       ssU232_therm , ssU233_therm , ssU234_therm ,     &
+                       ssU235_therm , ssU236_therm , ssU237_therm ,     &
+                       ssU238_therm , ssU239_therm ,                    &
+                       ssNp237_therm, ssNp238_therm,                    &
+                       ssNp239_therm, ssNp240_therm,                    &
+                       ssPu238_therm, ssPu239_therm, ssPu240_therm,     &
+                       ssPu241_therm, ssPu242_therm, ssPu243_therm,     &
+                       ssAm241_therm, ssAm242_therm,                    &
+                       ssAm243_therm, ssAm244_therm,                    &
+                       ssCm242_therm, ssCm243_therm,                    &
+                       ssCm244_therm, ssCm245_therm,                    &
+
+!          - thermal absorption cross sections  (XSecT)
+
+                       saTh232_therm,                                   &
+                       saU233_therm , saU235_therm , saU238_therm ,     &
+                       saPu239_therm, saPu240_therm,                    &
+                       saPu241_therm, saPu242_therm,                    &
+                       saGd155_therm, saGd157_therm,                    &
+
+
+!          - identifier of cross section dataset (ixsec)
+
+                       ixsec
+!     ==================================================================
+!                      Global Data Resonance
+
+      Real         ::  fres                    ,           &
+                       f_norm155               ,           &
+                       f_norm157               ,           &
+                       f_norm232               ,           &
+                       f_norm238               ,           &
+                       f_norm239               ,           &
+                       f_norm240               ,           &
+                       f155  ( igrmax, ifemax ),           &
+                       f157  ( igrmax, ifemax ),           &
+                       f232  ( igrmax, ifemax ),           &
+                       f238  ( igrmax, ifemax ),           &
+                       f239  ( igrmax, ifemax ),           &
+                       f240  ( igrmax, ifemax ),           &
+                       Kappa ( igrmax, ifemax ), Kappa_av
+
+      common /Resonance/  fres                    ,           &
+                       f_norm155               ,           &
+                       f_norm157               ,           &
+                       f_norm232               ,           &
+                       f_norm238               ,           &
+                       f_norm239               ,           &
+                       f_norm240               ,           &
+                       f155  ,           &
+                       f157  ,           &
+                       f232  ,           &
+                       f238  ,           &
+                       f239  ,           &
+                       f240  ,           &
+                       Kappa , Kappa_av
+
+!     ==================================================================
+!                      Reactivity Initiated Accident (RIA)
+
+      Integer      ::  iRIA         , PK_imax
+
+      Real         ::  PK_beta      , PK_DecayC    , PK_LifeTime  ,  &
+                       PK_GamF      , PK_GamC      ,                 &
+                       MeanTempF_new, MeanTempC_new,                 &
+                       ConcN_new    , ConcC_new    ,                 &
+                       PowerFac_new ,                                &
+                       Reac_new     ,                                &
+                       Reac_ext (0:10), PK_t (0:10)
+
+      common /RIA/ iRIA         , PK_imax,                       &
+                   PK_beta      , PK_DecayC    , PK_LifeTime  ,  &
+                   PK_GamF      , PK_GamC      ,                 &
+                   MeanTempF_new, MeanTempC_new,                 &
+                   ConcN_new    , ConcC_new    ,                 &
+                   PowerFac_new ,                                &
+                   Reac_new     ,                                &
+                   Reac_ext , PK_t 
+
+!     ==================================================================
+!                      Fission gas release in power ramp (FgrRamp)
+
+      Logical       :: LCondRampUp(M31Max), LCondRampDown(M31Max)
+
+      common /FgrRamp/ LCondRampUp, LCondRampDown
+!     ==================================================================
+!              Global Data for simple analytical solution for
+!                        He generation (TotalFlux)
+
+!     --- total neutron flux for burnup equations
+
+      Real          :: phi
+
+      common /TotalFlux/phi
+!     ==================================================================
+!              Global Data simplified analytical solution for
+!                     nuclide chains A and B (AnalMat)
+
+      Double precision  ::    AMatrix (10,10),             &
+                              BMatrix (10,10),             &
+                              Asa     (10)   ,             &
+                              Asc     (10)   ,             &
+                              Bsa     (10)   ,             &
+                              Bsc     (10)   ,             &
+                              cA      (10, 2),             &
+                              cB      (10, 2),             &
+                              dtSeconds
+      common /AnalMat/ AMatrix ,             &
+                       BMatrix ,             &
+                       Asa     ,             &
+                       Asc     ,             &
+                       Bsa     ,             &
+                       Bsc     ,             &
+                       cA      ,             &
+                       cB      ,             &
+                       dtSeconds   
+!     ==================================================================
+!              Global Data for LOCA models (LOCA)
+
+      Real       :: Sigburst    ( m31max ),                  &
+                    SigAvTan    ( m31max ),                  &
+                    Cladbeta    ( igrmax, ifemax, 2 ),       &
+                    CladbetaAv  ( m31max, 2 ),               &
+                    BlindLoca_1 ( m31max ),                  &
+                    BlindLoca_2 ( m31max ),                  &
+                    epslim, strlim
+
+      Integer    :: lburst, iecr,                            &
+                    ikuehl_loca, ixmode_loca, ibmech_loca ,  &
+                    ialpha_loca, ihgap_loca , icorro_loca ,  &
+                    iplnum_loca, itlog_loca , iclfail_loca,  &
+                    ModClad_loca(20)
+
+      Double Precision :: tloca, tburst (m31max)
+
+      Logical    :: start_loca
+
+      common /LOCA/ Sigburst    ,                  &
+                    SigAvTan    ,                  &
+                    Cladbeta    ,                  &
+                    CladbetaAv  ,                  &
+                    BlindLoca_1 ,                  &
+                    BlindLoca_2 ,                  &
+                    epslim, strlim,lburst, iecr,   &
+                    ikuehl_loca, ixmode_loca, ibmech_loca ,  &
+                    ialpha_loca, ihgap_loca , icorro_loca ,  &
+                    iplnum_loca, itlog_loca , iclfail_loca,  &
+                    ModClad_loca,tloca, tburst, start_loca
+
+!     ==================================================================
+!              Global Data for cladding oxidation (Oxid)
+
+      Real         :: conox    (m31max  ), conox0 (m31max  ),   &
+                      ecr      (m31max,2), gmoxi  (m31max,2),   &
+                      gmoxi_in (m31max,2), qclox  (m31max  )
+
+      common /Oxid/   conox    , conox0 ,   &
+                      ecr      , gmoxi  ,   &
+                      gmoxi_in , qclox  
+!     ==================================================================
+
+      SAVE         ! Inserted in order to be on the save side
+                   ! for all compilers
+
+      common /GD/ A01,B04
+! ######################
+  End Module Global_Data
+! ######################
+

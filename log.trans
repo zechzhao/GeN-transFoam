@@ -1,0 +1,1851 @@
+size of transtruct      32268952
+udia1    3296
+udia2    3296
+hdiag    3296
+odia1    3296
+odia2    3296
+rside    3296
+xsolu    3296
+aorg    14112
+amodval    14112
+rorg    336
+rmod    336
+xgau    336
+diag    336
+epsg    8
+EnInj_F    488
+EnInj_C    488
+EnInj_S    488
+FormfExtT1    8
+FormfExtT2    8
+DEPS    8
+DT    8
+DTALT    8
+DTITAL    8
+DTMAX    8
+DTMIN    8
+dtnew    8
+DT000    8
+T    8
+TALT    8
+TE    8
+TIMEAN    320
+TINTRU    8
+TITALT    8
+TNEXT    8
+TTRANS    8
+r8_comp    26743376
+AWERTP    9760
+AXVARP    9760
+AXVAR1    9760
+AXVAR2    9760
+DWERT1    240
+DWERT2    240
+T1    8
+T2    8
+WERTFA    240
+WERTP    240
+WERT1    240
+WERT2    240
+DTANFO    8
+Fpcre3    64000
+Fpgrn3    64000
+Fpgrb3    64000
+Fpath3    64000
+FpPorHBS3    64000
+g_FORMAS    384000
+AMatrix    800
+BMatrix    800
+Asa    80
+Asc    80
+Bsa    80
+Bsc    80
+cA    160
+cB    160
+dtSeconds    8
+tloca    8
+tburst    488
+DAL    244
+HB    240
+HBREF    240
+HH    244
+HHREF    244
+PiNumb    4
+RBA    244
+RBI    244
+REF    3200
+REFBA    244
+REFBA0    244
+REFBI    244
+REFBI0    244
+REFHA    244
+REFHA0    244
+REFHI    244
+REFHI0    244
+RHA    248
+RHI    248
+HBSwidth    488
+RISSL    244
+RMELT    1952
+RMaxTFu    244
+RRVEK    3200
+RSTRU    80
+SDLTCL    244
+SOXIDE    488
+SOXIDE_in    488
+UDOTFI    244
+UDOTFO    244
+WB    244
+WH    248
+WREL    244
+ZB    244
+ZBREF    244
+ZH    248
+ZHREF    248
+oxlayer    244
+WOX    244
+AUX    244
+Delta_r    3200
+AEQUER    480
+AREACL    244
+AREAFU    244
+epsficf    240
+C1    80
+C2    80
+C3    80
+C3JB    244
+C3JH    244
+C3REFB    244
+C3REFH    244
+cvdivt    244
+EMOD    80
+EMODCL    244
+EMODFU    244
+EPS0B    240
+EPS0H    240
+ERESGR    4
+ETA    57600
+ETAALT    244
+ETACRP    4
+ETA10    4800
+ETA11    4800
+ETA12    4800
+ETA3    4800
+ETA5    4800
+ETA6    4800
+ETA7    4800
+ETA8    4800
+ETA9    4800
+FMUEF    4
+FMUEH    4
+FNUE    80
+FNUECL    244
+FNUEFU    244
+G    1440
+INT1    1600
+INT2    1600
+INT3    1600
+INT4    80
+PLAST1    1600
+RELO    244
+SIGAVE    1952
+SIGMA    12800
+SIGS    1600
+RadDef_u    1600
+VISCOK    4880
+ZKMIN    4
+lim_cr    244
+TSEC_NORM    3200
+TRUPT_NORM    3200
+Epseff_th    3200
+Epseff_irr    3200
+EpsEffCl_crp    244
+S_depsCl_crp    488
+EpsEffCl_pla    244
+S_depsCl_pla    488
+EpsTanCl_tot    244
+Eps_OMCl_tot    244
+sigmaefftime    3200
+ETAstat    3200
+FJ    244
+FSPRNG    4
+GEWB    244
+GEWH    244
+HAFT    244
+PJ    244
+PAXIAL    244
+REIB    244
+ANTLIQ    488
+CHI    3200
+CHIK    488
+HFBDYI    244
+HFBDYO    244
+HFBYSI    244
+TEBA    244
+TEBI    244
+AvTempFu    488
+MaxTempFu    244
+TEBDYI    244
+TEBDYO    244
+TEBYSI    244
+TEHA    244
+TEHI    244
+AvTempCl    488
+TEMPS    32
+TETA    6400
+TETAK    488
+TETAS    160
+TETKIN    244
+TETYIN    244
+TSTRA    244
+TSTRI    244
+T23INP    4
+T34INP    4
+Chil01    4
+Tcoli1    4
+TemperatureUP    4
+SOLTMK    1600
+LIQTMK    1600
+Entha_L    3200
+Entha_F    488
+Entha_C    488
+Entha_S    488
+Entha_F_Ttrans    244
+Entha_C_Ttrans    244
+Entlpy_max_c    244
+Entlpy_max_f    244
+BRNUP1    488
+BRNUP_EFF1    488
+BRNUP3    3200
+BRNUP_EFF3    3200
+BUFIMQ    244
+CNPU1    488
+CNPU3    3200
+CNAM3    3200
+EQNL    244
+FASTLF    4
+FDEPL    244
+FGAMLH    244
+FGAMLK    244
+FGAMLS    244
+FLUXL    244
+FLUXTI    488
+FORMF    1600
+FORMQ    1600
+FormfExtVal    3200
+FormfExtAux    1600
+OZUM1    488
+OZUM3    3200
+Q1NEW    244
+Q1VEK    488
+Q2BH    488
+Q2HK    488
+Q2KS    488
+Q2SB    488
+Q2ZB    488
+Q3SVEK    160
+Q3VEK    3200
+RESESC    4
+Th232LocalI    1600
+Pa233LocalI    1600
+U232LocalI    1600
+U233LocalI    1600
+U234LocalI    1600
+U235LocalI    1600
+U236LocalI    1600
+U237LocalI    1600
+U238LocalI    1600
+U239LocalI    1600
+Np237LocalI    1600
+Np238LocalI    1600
+Np239LocalI    1600
+Np240LocalI    1600
+Pu238LocalI    1600
+Pu239LocalI    1600
+Pu240LocalI    1600
+Pu241LocalI    1600
+Pu242LocalI    1600
+Pu243LocalI    1600
+Am241LocalI    1600
+Am242LocalI    1600
+Am243LocalI    1600
+Am244LocalI    1600
+Cm242LocalI    1600
+Cm243LocalI    1600
+Cm244LocalI    1600
+Cm245LocalI    1600
+Cm246LocalI    1600
+He4LocalI    1600
+He4ALocalI    1600
+He4BLocalI    1600
+PA238LocalI    1600
+PB238LocalI    1600
+Th232Local    3200
+Pa233Local    3200
+U232Local    3200
+U233Local    3200
+U234Local    3200
+U235Local    3200
+U236Local    3200
+U237Local    3200
+U238Local    3200
+U239Local    3200
+Np237Local    3200
+Np238Local    3200
+Np239Local    3200
+Np240Local    3200
+Pu238Local    3200
+Pu239Local    3200
+Pu240Local    3200
+Pu241Local    3200
+Pu242Local    3200
+Pu243Local    3200
+Am241Local    3200
+Am242Local    3200
+Am243Local    3200
+Am244Local    3200
+Cm242Local    3200
+Cm243Local    3200
+Cm244Local    3200
+Cm245Local    3200
+Cm246Local    3200
+He4Local    3200
+He4ALocal    3200
+He4BLocal    3200
+PA238Local    3200
+PB238Local    3200
+Th232Section    488
+Pa233Section    488
+U232Section    488
+U233Section    488
+U234Section    488
+U235Section    488
+U236Section    488
+U237Section    488
+U238Section    488
+U239Section    488
+Np237Section    488
+Np238Section    488
+Np239Section    488
+Np240Section    488
+Pu238Section    488
+Pu239Section    488
+Pu240Section    488
+Pu241Section    488
+Pu242Section    488
+Pu243Section    488
+Am241Section    488
+Am242Section    488
+Am243Section    488
+Am244Section    488
+Cm242Section    488
+Cm243Section    488
+Cm244Section    488
+Cm245Section    488
+Cm246Section    488
+He4Section    488
+He4ASection    488
+He4BSection    488
+PA238Section    488
+PB238Section    488
+NTOT    244
+ENRITh232    244
+ENRIPa233    244
+ENRIU232    244
+ENRIU233    244
+ENRIU234    244
+ENRIU235    244
+ENRIU236    244
+ENRINp237    244
+ENRIPu238    244
+ENRIPu239    244
+ENRIPu240    244
+ENRIPu241    244
+ENRIPu242    244
+ENRIAm241    244
+ENRIAm243    244
+ENRICm242    244
+ENRICm243    244
+ENRICm244    244
+ENRICm245    244
+ENRICm246    244
+ZEITFA    4
+SPEPS    4
+cpvek    3200
+cpsvek    160
+lavek    3200
+lasvek    160
+rovek    3200
+rosvek    160
+loxide    244
+beta    4
+ColdWo    4
+nCracks    4
+CRKPOR    3200
+RelocVol    488
+DENBUP    244
+DENPOR    244
+DKORN    244
+EPSTAU    3200
+FtxRad    4
+FtxTan    4
+FtxAxi    4
+GASPOR    3200
+GEFUEG    976
+G23INP    4
+G34INP    4
+KORNGR    3200
+PFEIN    244
+PGRO1    244
+PGRO2    244
+PGRO3    244
+POR000    244
+POROSI    1600
+PorHBS    3200
+PRODIS    244
+OpenPor    488
+PorHe    244
+P23INP    4
+P34INP    4
+RGRO1    244
+RGRO2    244
+RGRO3    244
+RSNTR0    4
+RZENKA    244
+SINPOR    3200
+TETAGR    4
+TSINT0    4
+WEGLAE    1600
+ALPHAL    244
+ALPHIN    244
+ALPHKS    488
+ALPHSB    4
+ALSB    4
+AOPL    4
+ASP    4
+AZK    4
+BUFREI    244
+CANF    40
+CGAOPL    40
+CGAUPL    40
+CONGAS    2440
+GASKON    4
+gastot    80
+HGAP    244
+HGAPIN    244
+PAL    244
+PIOPL    4
+PISPL    244
+PIUPL    4
+PIX    4
+PIZKL    244
+PKONTA    488
+RAUBL    244
+RAUHL    244
+SPALTW    488
+VOLD    4
+VOLK    4
+VOLS    4
+Volr    4
+VPO    4
+VPU    4
+CKUEKA    4
+CKVEK    488
+EKVEK    488
+FGVEK    488
+FKVEK    488
+GKL    244
+HSVEK    488
+MKVEK    488
+PKVEK    488
+QKL    244
+QKVEK    488
+RHVEK    488
+RKVEK    488
+RSVEK    244
+SKL    244
+SKVEK    488
+VHVEK    488
+VPVEK    244
+WK    244
+Opti06    244
+Opti07    244
+Opti15    244
+Temp_pl_low    4
+Temp_pl_up    4
+Opti27    4
+Opti28    4
+Opti29    4
+RRRR1    4
+RRRR2    4
+RRRR3    4
+RRRR4    4
+RRRR5    4
+KOAXKO    32
+KOMECH    32
+KOTEMP    32
+KOURAN    32
+r4_comp    3200000
+datfe3    240280
+datfe4    66416
+datfe5    1976
+VSVE1    1600
+VSVE2    1600
+VSVE3    1600
+VSVE5    4800
+VSVE6    4800
+VSVE7    4800
+VSVE9    4800
+VSVE10    4800
+VSVE12    4800
+Fblind    4
+fairat    4880
+Random_Var    3360
+FNOISW    120
+FNOISB    120
+FNOISH    120
+FNOISM    120
+Fpcre1    4880
+Fpgrn1    4880
+Fpgrb1    4880
+Fpinf1    4880
+FpPorHBS1    4880
+Fpcre0    80
+Fpgrn0    80
+Fpgrb0    80
+Fpinf0    80
+FpPorHBS0    80
+He_cre_IFBA    488
+Conc_B10_IFBA    488
+Conc_U235_IFBA    488
+Thick_IFBA    244
+Enr_B10_IFBA    244
+dHe_tot_IFBA    4
+Frac155    244
+Frac157    244
+Gd2O3    244
+Gd_tot_1    488
+Gd_155_1    488
+Gd_157_1    488
+Gd_tot_3    3200
+Gd_155_3    3200
+Gd_157_3    3200
+Gd_tot_3I    1600
+Gd_155_3I    1600
+Gd_157_3I    1600
+sfTh232    4
+sfPa233    4
+sfU232    4
+sfU233    4
+sfU234    4
+sfU235    4
+sfU236    4
+sfU237    4
+sfU238    4
+sfU239    4
+sfNp237    4
+sfNp238    4
+sfNp239    4
+sfNp240    4
+sfPu238    4
+sfPu239    4
+sfPu240    4
+sfPu241    4
+sfPu242    4
+sfPu243    4
+sfAm241    4
+sfAm242    4
+sfAm243    4
+sfAm244    4
+sfCm242    4
+sfCm243    4
+sfCm244    4
+sfCm245    4
+scTh232    4
+scPa233    4
+scU232    4
+scU233    4
+scU234    4
+scU235    4
+scU236    4
+scU237    4
+scU238    4
+scU239    4
+scNp237    4
+scNp238    4
+scNp239    4
+scNp240    4
+scPu238    4
+scPu239    4
+scPu240    4
+scPu241    4
+scPu242    4
+scPu243    4
+scAm241    4
+scAm242    4
+scAm243    4
+scAm244    4
+scCm242    4
+scCm243    4
+scCm244    4
+scCm245    4
+saTh232    4
+saPa233    4
+saU232    4
+saU233    4
+saU234    4
+saU235    4
+saU236    4
+saU237    4
+saU238    4
+saU239    4
+saNp237    4
+saNp238    4
+saNp239    4
+saNp240    4
+saPu238    4
+saPu239    4
+saPu240    4
+saPu241    4
+saPu242    4
+saPu243    4
+saAm241    4
+saAm242    4
+saAm243    4
+saAm244    4
+saCm242    4
+saCm243    4
+saCm244    4
+saCm245    4
+slambdaPu241    4
+saGd155    4
+saGd157    4
+saO16    4
+ssTh232_therm    4
+ssPa233_therm    4
+ssU232_therm    4
+ssU233_therm    4
+ssU234_therm    4
+ssU235_therm    4
+ssU236_therm    4
+ssU237_therm    4
+ssU238_therm    4
+ssU239_therm    4
+ssNp237_therm    4
+ssNp238_therm    4
+ssNp239_therm    4
+ssNp240_therm    4
+ssPu238_therm    4
+ssPu239_therm    4
+ssPu240_therm    4
+ssPu241_therm    4
+ssPu242_therm    4
+ssPu243_therm    4
+ssAm241_therm    4
+ssAm242_therm    4
+ssAm243_therm    4
+ssAm244_therm    4
+ssCm242_therm    4
+ssCm243_therm    4
+ssCm244_therm    4
+ssCm245_therm    4
+saTh232_therm    4
+saU233_therm    4
+saU235_therm    4
+saU238_therm    4
+saPu239_therm    4
+saPu240_therm    4
+saPu241_therm    4
+saPu242_therm    4
+saGd155_therm    4
+saGd157_therm    4
+fres    4
+f_norm155    4
+f_norm157    4
+f_norm232    4
+f_norm238    4
+f_norm239    4
+f_norm240    4
+f155    1600
+f157    1600
+f232    1600
+f238    1600
+f239    1600
+f240    1600
+Kappa    1600
+Kappa_av    4
+PK_beta    4
+PK_DecayC    4
+PK_LifeTime    4
+PK_GamF    4
+PK_GamC    4
+MeanTempF_new    4
+MeanTempC_new    4
+ConcN_new    4
+ConcC_new    4
+PowerFac_new    4
+Reac_new    4
+Reac_ext    0
+PK_t    0
+phi    4
+Sigburst    244
+SigAvTan    244
+Cladbeta    3200
+CladbetaAv    488
+BlindLoca_1    244
+BlindLoca_2    244
+epslim    4
+strlim    4
+conox    244
+conox0    244
+ecr    488
+gmoxi    488
+gmoxi_in    488
+qclox    244
+macroi    4
+iwert    4
+iaxvar    4
+UnitNr_restart    4
+kwrite    4
+UnitNr_pli    4
+UnitNr_mic    4
+UnitNr_mac    4
+UnitNr_sta    4
+nread0    4
+nread    4
+nwrite    4
+UnitNr_sta_scratch    4
+nerror    4
+UnitNr_sta_log    4
+UnitNr_formf    4
+UnitNr_formf_log    4
+UnitNr_itlog1    4
+UnitNr_itlog2    4
+IALPHA    4
+IANZA    4
+IAXKON    240
+IBLOC    4
+iBroyden_s    4
+iBroyden_u    4
+IBMECH    4
+IBZTEI    120
+IBZZEI    120
+ICOUPL    4
+IDEGAS    2440
+IDENSI    4
+IEND1    4
+IFAALT    244
+IFALLL    244
+IFORM    4
+IFREI    4800
+IFRONT    4
+IGASZA    732
+IGASZI    732
+IHGAP    4
+IGRNSZ    4
+IKUEHL    4
+ikueka    4
+INSTA    4
+INTRUP    4
+INUMB    4
+IPLOT    4
+IRAKON    244
+IRAND    4
+IRELOC    4
+ISCHR    4
+ISCHRL    244
+ISTATI    4
+ISTOP    4
+ISTREC    6400
+ISTRUK    4
+ITEALT    4
+ITEMTE    4
+ITERAX    4
+ITERAG    4
+ITERGE    4
+ITERGS    4
+ITERS    244
+ITERSG    4
+ITERT    4
+ITERTG    4
+ITHEOMEC    4
+IVAR1    4
+IXMODE    4
+inumbm    4
+RecNr_mic    4
+RecNr_mac    4
+IZENKA    4
+KFRONT    4
+KPLOT    4
+KRIMAX    1600
+Init_one    80
+Init_fuel    80
+Init_cool    80
+Init_axi    4880
+LSCHNI    4
+MEND    4
+M1    4
+M1B    4
+M1H    4
+M1STR    4
+M2    80
+M3    4
+M31    4
+M32    4
+NFRONT    4
+NKOMM    4
+NRSUDT    4
+NRSUIT    4
+NTIMAN    160
+NTIMSU    160
+Number_Nodes_fuel    244
+Number_Nodes_clad    244
+No_TimeStepReq    4
+iWarning_fuel    80
+iWarning_clad    80
+iWarning_cool    80
+iclfail    4
+ICORRO    4
+icrkpi    4
+ifba    4
+ihbs    4
+iHe    4
+ihydd    4
+iloca    4
+IMPLIC    4
+intaxl    4
+ioxide    4
+ioxire    4
+iphasezr    4
+iplnum    4
+IPLOT1    4
+IPLOT2    4
+IPOINT    4
+IPURE    4
+ISCHR1    4
+ISCHR2    4
+ISLICE    4
+ISTAT    4
+ISTZNE    4
+isurfb    4
+ITERM    4
+ITERMG    4
+itlog    4
+ITRNPT    244
+kokoko    4
+MaxRecNr_mac    4
+MaxRecNr_mic    4
+MaxRecNr_sta    4
+MSTEP    4
+NRSUIS    4
+NUMBER    20
+RecNr_sta    4
+kontr    168
+thbdyi    244
+thbdyo    244
+thbysi    244
+FormfAx    4
+IBRUT    244
+MatProp_fuel    4880
+MatProp_clad    80
+MatProp_strc    2440
+MatProp_cool    40
+IGEFUE    1600
+NOX    40
+IEINLA    244
+LSTERN    244
+IIII1    4
+IIII2    4
+IIII3    4
+IIII4    4
+IIII5    4
+i4_comp    591944
+ibyte    4
+RecLength_mic    4
+RecLength_mac    4
+RecLength_sta    4
+len_i4    244
+len_r4    244
+len_r8    244
+Random_Shape    840
+INOISE    4
+NumbExpTerms    4
+IGd    4
+ixsec    244
+iRIA    4
+PK_imax    4
+lburst    4
+iecr    4
+ikuehl_loca    4
+ixmode_loca    4
+ibmech_loca    4
+ialpha_loca    4
+ihgap_loca    4
+icorro_loca    4
+iplnum_loca    4
+itlog_loca    4
+iclfail_loca    4
+ModClad_loca    80
+Azze    240
+Infpl    80
+Itext    1200
+Pinch    12
+Formch    1000
+AXKONV    1
+CLADRP    61
+ISCHMB    61
+ISCHMH    61
+LXKONV    61
+MKONV    1
+SKONV    61
+THANLY    61
+TKONV    1
+TRANSA    1
+MacroTime_zero    1
+MacroTime_end    1
+MacroTime_restart    1
+Normal_end    1
+Cladrp_glob    1
+Change_of_Geometry    1
+Conv_large_strain    1
+plenum    1
+LCondRampUp    61
+LCondRampDown    61
+start_loca    1
+ size of transvars             32269040
+ udia1                     3296
+ udia2                     3296
+ hdiag                     3296
+ odia1                     3296
+ odia2                     3296
+ rside                     3296
+ xsolu                     3296
+ aorg                    14112
+ amodval                    14112
+ rorg                      336
+ rmod                      336
+ xgau                      336
+ diag                      336
+ epsg                        8
+ EnInj_F                      488
+ EnInj_C                      488
+ EnInj_S                      488
+ FormfExtT1                        8
+ FormfExtT2                        8
+ DEPS                        8
+ DT                        8
+ DTALT                        8
+ DTITAL                        8
+ DTMAX                        8
+ DTMIN                        8
+ dtnew                        8
+ DT000                        8
+ T                        8
+ TALT                        8
+ TE                        8
+ TIMEAN                      320
+ TINTRU                        8
+ TITALT                        8
+ TNEXT                        8
+ TTRANS                        8
+ r8_comp                 26743376
+ AWERTP                     9760
+ AXVARP                     9760
+ AXVAR1                     9760
+ AXVAR2                     9760
+ DWERT1                      240
+ DWERT2                      240
+ T1                        8
+ T2                        8
+ WERTFA                      240
+ WERTP                      240
+ WERT1                      240
+ WERT2                      240
+ DTANFO                        8
+ Fpcre3                    64000
+ Fpgrn3                    64000
+ Fpgrb3                    64000
+ Fpath3                    64000
+ FpPorHBS3                    64000
+ g_FORMAS                   384000
+ AMatrix                      800
+ BMatrix                      800
+ Asa                       80
+ Asc                       80
+ Bsa                       80
+ Bsc                       80
+ cA                      160
+ cB                      160
+ dtSeconds                        8
+ tloca                        8
+ tburst                      488
+ DAL                      244
+ HB                      240
+ HBREF                      240
+ HH                      244
+ HHREF                      244
+ PiNumb                        4
+ RBA                      244
+ RBI                      244
+ REF                     3200
+ REFBA                      244
+ REFBA0                      244
+ REFBI                      244
+ REFBI0                      244
+ REFHA                      244
+ REFHA0                      244
+ REFHI                      244
+ REFHI0                      244
+ RHA                      248
+ RHI                      248
+ HBSwidth                      488
+ RISSL                      244
+ RMELT                     1952
+ RMaxTFu                      244
+ RRVEK                     3200
+ RSTRU                       80
+ SDLTCL                      244
+ SOXIDE                      488
+ SOXIDE_in                      488
+ UDOTFI                      244
+ UDOTFO                      244
+ WB                      244
+ WH                      248
+ WREL                      244
+ ZB                      244
+ ZBREF                      244
+ ZH                      248
+ ZHREF                      248
+ oxlayer                      244
+ WOX                      244
+ AUX                      244
+ Delta_r                     3200
+ AEQUER                      480
+ AREACL                      244
+ AREAFU                      244
+ epsficf                      240
+ C1                       80
+ C2                       80
+ C3                       80
+ C3JB                      244
+ C3JH                      244
+ C3REFB                      244
+ C3REFH                      244
+ cvdivt                      244
+ EMOD                       80
+ EMODCL                      244
+ EMODFU                      244
+ EPS0B                      240
+ EPS0H                      240
+ ERESGR                        4
+ ETA                    57600
+ ETAALT                      244
+ ETACRP                        4
+ ETA10                     4800
+ ETA11                     4800
+ ETA12                     4800
+ ETA3                     4800
+ ETA5                     4800
+ ETA6                     4800
+ ETA7                     4800
+ ETA8                     4800
+ ETA9                     4800
+ FMUEF                        4
+ FMUEH                        4
+ FNUE                       80
+ FNUECL                      244
+ FNUEFU                      244
+ G                     1440
+ INT1                     1600
+ INT2                     1600
+ INT3                     1600
+ INT4                       80
+ PLAST1                     1600
+ RELO                      244
+ SIGAVE                     1952
+ SIGMA                    12800
+ SIGS                     1600
+ RadDef_u                     1600
+ VISCOK                     4880
+ ZKMIN                        4
+ lim_cr                      244
+ TSEC_NORM                     3200
+ TRUPT_NORM                     3200
+ Epseff_th                     3200
+ Epseff_irr                     3200
+ EpsEffCl_crp                      244
+ S_depsCl_crp                      488
+ EpsEffCl_pla                      244
+ S_depsCl_pla                      488
+ EpsTanCl_tot                      244
+ Eps_OMCl_tot                      244
+ sigmaefftime                     3200
+ ETAstat                     3200
+ FJ                      244
+ FSPRNG                        4
+ GEWB                      244
+ GEWH                      244
+ HAFT                      244
+ PJ                      244
+ PAXIAL                      244
+ REIB                      244
+ ANTLIQ                      488
+ CHI                     3200
+ CHIK                      488
+ HFBDYI                      244
+ HFBDYO                      244
+ HFBYSI                      244
+ TEBA                      244
+ TEBI                      244
+ AvTempFu                      488
+ MaxTempFu                      244
+ TEBDYI                      244
+ TEBDYO                      244
+ TEBYSI                      244
+ TEHA                      244
+ TEHI                      244
+ AvTempCl                      488
+ TEMPS                       32
+ TETA                     6400
+ TETAK                      488
+ TETAS                      160
+ TETKIN                      244
+ TETYIN                      244
+ TSTRA                      244
+ TSTRI                      244
+ T23INP                        4
+ T34INP                        4
+ Chil01                        4
+ Tcoli1                        4
+ TemperatureUP                        4
+ SOLTMK                     1600
+ LIQTMK                     1600
+ Entha_L                     3200
+ Entha_F                      488
+ Entha_C                      488
+ Entha_S                      488
+ Entha_F_Ttrans                      244
+ Entha_C_Ttrans                      244
+ Entlpy_max_c                      244
+ Entlpy_max_f                      244
+ BRNUP1                      488
+ BRNUP_EFF1                      488
+ BRNUP3                     3200
+ BRNUP_EFF3                     3200
+ BUFIMQ                      244
+ CNPU1                      488
+ CNPU3                     3200
+ CNAM3                     3200
+ EQNL                      244
+ FASTLF                        4
+ FDEPL                      244
+ FGAMLH                      244
+ FGAMLK                      244
+ FGAMLS                      244
+ FLUXL                      244
+ FLUXTI                      488
+ FORMF                     1600
+ FORMQ                     1600
+ FormfExtVal                     3200
+ FormfExtAux                     1600
+ OZUM1                      488
+ OZUM3                     3200
+ Q1NEW                      244
+ Q1VEK                      488
+ Q2BH                      488
+ Q2HK                      488
+ Q2KS                      488
+ Q2SB                      488
+ Q2ZB                      488
+ Q3SVEK                      160
+ Q3VEK                     3200
+ RESESC                        4
+ Th232LocalI                     1600
+ Pa233LocalI                     1600
+ U232LocalI                     1600
+ U233LocalI                     1600
+ U234LocalI                     1600
+ U235LocalI                     1600
+ U236LocalI                     1600
+ U237LocalI                     1600
+ U238LocalI                     1600
+ U239LocalI                     1600
+ Np237LocalI                     1600
+ Np238LocalI                     1600
+ Np239LocalI                     1600
+ Np240LocalI                     1600
+ Pu238LocalI                     1600
+ Pu239LocalI                     1600
+ Pu240LocalI                     1600
+ Pu241LocalI                     1600
+ Pu242LocalI                     1600
+ Pu243LocalI                     1600
+ Am241LocalI                     1600
+ Am242LocalI                     1600
+ Am243LocalI                     1600
+ Am244LocalI                     1600
+ Cm242LocalI                     1600
+ Cm243LocalI                     1600
+ Cm244LocalI                     1600
+ Cm245LocalI                     1600
+ Cm246LocalI                     1600
+ He4LocalI                     1600
+ He4ALocalI                     1600
+ He4BLocalI                     1600
+ PA238LocalI                     1600
+ PB238LocalI                     1600
+ Th232Local                     3200
+ Pa233Local                     3200
+ U232Local                     3200
+ U233Local                     3200
+ U234Local                     3200
+ U235Local                     3200
+ U236Local                     3200
+ U237Local                     3200
+ U238Local                     3200
+ U239Local                     3200
+ Np237Local                     3200
+ Np238Local                     3200
+ Np239Local                     3200
+ Np240Local                     3200
+ Pu238Local                     3200
+ Pu239Local                     3200
+ Pu240Local                     3200
+ Pu241Local                     3200
+ Pu242Local                     3200
+ Pu243Local                     3200
+ Am241Local                     3200
+ Am242Local                     3200
+ Am243Local                     3200
+ Am244Local                     3200
+ Cm242Local                     3200
+ Cm243Local                     3200
+ Cm244Local                     3200
+ Cm245Local                     3200
+ Cm246Local                     3200
+ He4Local                     3200
+ He4ALocal                     3200
+ He4BLocal                     3200
+ PA238Local                     3200
+ PB238Local                     3200
+ Th232Section                      488
+ Pa233Section                      488
+ U232Section                      488
+ U233Section                      488
+ U234Section                      488
+ U235Section                      488
+ U236Section                      488
+ U237Section                      488
+ U238Section                      488
+ U239Section                      488
+ Np237Section                      488
+ Np238Section                      488
+ Np239Section                      488
+ Np240Section                      488
+ Pu238Section                      488
+ Pu239Section                      488
+ Pu240Section                      488
+ Pu241Section                      488
+ Pu242Section                      488
+ Pu243Section                      488
+ Am241Section                      488
+ Am242Section                      488
+ Am243Section                      488
+ Am244Section                      488
+ Cm242Section                      488
+ Cm243Section                      488
+ Cm244Section                      488
+ Cm245Section                      488
+ Cm246Section                      488
+ He4Section                      488
+ He4ASection                      488
+ He4BSection                      488
+ PA238Section                      488
+ PB238Section                      488
+ NTOT                      244
+ ENRITh232                      244
+ ENRIPa233                      244
+ ENRIU232                      244
+ ENRIU233                      244
+ ENRIU234                      244
+ ENRIU235                      244
+ ENRIU236                      244
+ ENRINp237                      244
+ ENRIPu238                      244
+ ENRIPu239                      244
+ ENRIPu240                      244
+ ENRIPu241                      244
+ ENRIPu242                      244
+ ENRIAm241                      244
+ ENRIAm243                      244
+ ENRICm242                      244
+ ENRICm243                      244
+ ENRICm244                      244
+ ENRICm245                      244
+ ENRICm246                      244
+ ZEITFA                        4
+ SPEPS                        4
+ cpvek                     3200
+ cpsvek                      160
+ lavek                     3200
+ lasvek                      160
+ rovek                     3200
+ rosvek                      160
+ loxide                      244
+ beta                        4
+ ColdWo                        4
+ nCracks                        4
+ CRKPOR                     3200
+ RelocVol                      488
+ DENBUP                      244
+ DENPOR                      244
+ DKORN                      244
+ EPSTAU                     3200
+ FtxRad                        4
+ FtxTan                        4
+ FtxAxi                        4
+ GASPOR                     3200
+ GEFUEG                      976
+ G23INP                        4
+ G34INP                        4
+ KORNGR                     3200
+ PFEIN                      244
+ PGRO1                      244
+ PGRO2                      244
+ PGRO3                      244
+ POR000                      244
+ POROSI                     1600
+ PorHBS                     3200
+ PRODIS                      244
+ OpenPor                      488
+ PorHe                      244
+ P23INP                        4
+ P34INP                        4
+ RGRO1                      244
+ RGRO2                      244
+ RGRO3                      244
+ RSNTR0                        4
+ RZENKA                      244
+ SINPOR                     3200
+ TETAGR                        4
+ TSINT0                        4
+ WEGLAE                     1600
+ ALPHAL                      244
+ ALPHIN                      244
+ ALPHKS                      488
+ ALPHSB                        4
+ ALSB                        4
+ AOPL                        4
+ ASP                        4
+ AZK                        4
+ BUFREI                      244
+ CANF                       40
+ CGAOPL                       40
+ CGAUPL                       40
+ CONGAS                     2440
+ GASKON                        4
+ gastot                       80
+ HGAP                      244
+ HGAPIN                      244
+ PAL                      244
+ PIOPL                        4
+ PISPL                      244
+ PIUPL                        4
+ PIX                        4
+ PIZKL                      244
+ PKONTA                      488
+ RAUBL                      244
+ RAUHL                      244
+ SPALTW                      488
+ VOLD                        4
+ VOLK                        4
+ VOLS                        4
+ Volr                        4
+ VPO                        4
+ VPU                        4
+ CKUEKA                        4
+ CKVEK                      488
+ EKVEK                      488
+ FGVEK                      488
+ FKVEK                      488
+ GKL                      244
+ HSVEK                      488
+ MKVEK                      488
+ PKVEK                      488
+ QKL                      244
+ QKVEK                      488
+ RHVEK                      488
+ RKVEK                      488
+ RSVEK                      244
+ SKL                      244
+ SKVEK                      488
+ VHVEK                      488
+ VPVEK                      244
+ WK                      244
+ Opti06                      244
+ Opti07                      244
+ Opti15                      244
+ Temp_pl_low                        4
+ Temp_pl_up                        4
+ Opti27                        4
+ Opti28                        4
+ Opti29                        4
+ RRRR1                        4
+ RRRR2                        4
+ RRRR3                        4
+ RRRR4                        4
+ RRRR5                        4
+ KOAXKO                       32
+ KOMECH                       32
+ KOTEMP                       32
+ KOURAN                       32
+ r4_comp                  3200000
+ datfe3                   240280
+ datfe4                    66416
+ datfe5                     1976
+ VSVE1                     1600
+ VSVE2                     1600
+ VSVE3                     1600
+ VSVE5                     4800
+ VSVE6                     4800
+ VSVE7                     4800
+ VSVE9                     4800
+ VSVE10                     4800
+ VSVE12                     4800
+ Fblind                        4
+ fairat                     4880
+ Random_Var                     3360
+ FNOISW                      120
+ FNOISB                      120
+ FNOISH                      120
+ FNOISM                      120
+ Fpcre1                     4880
+ Fpgrn1                     4880
+ Fpgrb1                     4880
+ Fpinf1                     4880
+ FpPorHBS1                     4880
+ Fpcre0                       80
+ Fpgrn0                       80
+ Fpgrb0                       80
+ Fpinf0                       80
+ FpPorHBS0                       80
+ He_cre_IFBA                      488
+ Conc_B10_IFBA                      488
+ Conc_U235_IFBA                      488
+ Thick_IFBA                      244
+ Enr_B10_IFBA                      244
+ dHe_tot_IFBA                        4
+ Frac155                      244
+ Frac157                      244
+ Gd2O3                      244
+ Gd_tot_1                      488
+ Gd_155_1                      488
+ Gd_157_1                      488
+ Gd_tot_3                     3200
+ Gd_155_3                     3200
+ Gd_157_3                     3200
+ Gd_tot_3I                     1600
+ Gd_155_3I                     1600
+ Gd_157_3I                     1600
+ sfTh232                        4
+ sfPa233                        4
+ sfU232                        4
+ sfU233                        4
+ sfU234                        4
+ sfU235                        4
+ sfU236                        4
+ sfU237                        4
+ sfU238                        4
+ sfU239                        4
+ sfNp237                        4
+ sfNp238                        4
+ sfNp239                        4
+ sfNp240                        4
+ sfPu238                        4
+ sfPu239                        4
+ sfPu240                        4
+ sfPu241                        4
+ sfPu242                        4
+ sfPu243                        4
+ sfAm241                        4
+ sfAm242                        4
+ sfAm243                        4
+ sfAm244                        4
+ sfCm242                        4
+ sfCm243                        4
+ sfCm244                        4
+ sfCm245                        4
+ scTh232                        4
+ scPa233                        4
+ scU232                        4
+ scU233                        4
+ scU234                        4
+ scU235                        4
+ scU236                        4
+ scU237                        4
+ scU238                        4
+ scU239                        4
+ scNp237                        4
+ scNp238                        4
+ scNp239                        4
+ scNp240                        4
+ scPu238                        4
+ scPu239                        4
+ scPu240                        4
+ scPu241                        4
+ scPu242                        4
+ scPu243                        4
+ scAm241                        4
+ scAm242                        4
+ scAm243                        4
+ scAm244                        4
+ scCm242                        4
+ scCm243                        4
+ scCm244                        4
+ scCm245                        4
+ saTh232                        4
+ saPa233                        4
+ saU232                        4
+ saU233                        4
+ saU234                        4
+ saU235                        4
+ saU236                        4
+ saU237                        4
+ saU238                        4
+ saU239                        4
+ saNp237                        4
+ saNp238                        4
+ saNp239                        4
+ saNp240                        4
+ saPu238                        4
+ saPu239                        4
+ saPu240                        4
+ saPu241                        4
+ saPu242                        4
+ saPu243                        4
+ saAm241                        4
+ saAm242                        4
+ saAm243                        4
+ saAm244                        4
+ saCm242                        4
+ saCm243                        4
+ saCm244                        4
+ saCm245                        4
+ slambdaPu241                        4
+ saGd155                        4
+ saGd157                        4
+ saO16                        4
+ ssTh232_therm                        4
+ ssPa233_therm                        4
+ ssU232_therm                        4
+ ssU233_therm                        4
+ ssU234_therm                        4
+ ssU235_therm                        4
+ ssU236_therm                        4
+ ssU237_therm                        4
+ ssU238_therm                        4
+ ssU239_therm                        4
+ ssNp237_therm                        4
+ ssNp238_therm                        4
+ ssNp239_therm                        4
+ ssNp240_therm                        4
+ ssPu238_therm                        4
+ ssPu239_therm                        4
+ ssPu240_therm                        4
+ ssPu241_therm                        4
+ ssPu242_therm                        4
+ ssPu243_therm                        4
+ ssAm241_therm                        4
+ ssAm242_therm                        4
+ ssAm243_therm                        4
+ ssAm244_therm                        4
+ ssCm242_therm                        4
+ ssCm243_therm                        4
+ ssCm244_therm                        4
+ ssCm245_therm                        4
+ saTh232_therm                        4
+ saU233_therm                        4
+ saU235_therm                        4
+ saU238_therm                        4
+ saPu239_therm                        4
+ saPu240_therm                        4
+ saPu241_therm                        4
+ saPu242_therm                        4
+ saGd155_therm                        4
+ saGd157_therm                        4
+ fres                        4
+ f_norm155                        4
+ f_norm157                        4
+ f_norm232                        4
+ f_norm238                        4
+ f_norm239                        4
+ f_norm240                        4
+ f155                     1600
+ f157                     1600
+ f232                     1600
+ f238                     1600
+ f239                     1600
+ f240                     1600
+ Kappa                     1600
+ Kappa_av                        4
+ PK_beta                        4
+ PK_DecayC                        4
+ PK_LifeTime                        4
+ PK_GamF                        4
+ PK_GamC                        4
+ MeanTempF_new                        4
+ MeanTempC_new                        4
+ ConcN_new                        4
+ ConcC_new                        4
+ PowerFac_new                        4
+ Reac_new                        4
+ Reac_ext                       44
+ PK_t                       44
+ phi                        4
+ Sigburst                      244
+ SigAvTan                      244
+ Cladbeta                     3200
+ CladbetaAv                      488
+ BlindLoca_1                      244
+ BlindLoca_2                      244
+ epslim                        4
+ strlim                        4
+ conox                      244
+ conox0                      244
+ ecr                      488
+ gmoxi                      488
+ gmoxi_in                      488
+ qclox                      244
+ macroi                        4
+ iwert                        4
+ iaxvar                        4
+ UnitNr_restart                        4
+ kwrite                        4
+ UnitNr_pli                        4
+ UnitNr_mic                        4
+ UnitNr_mac                        4
+ UnitNr_sta                        4
+ nread0                        4
+ nread                        4
+ nwrite                        4
+ UnitNr_sta_scratch                        4
+0
+0
+I'm GeN-Foam input pretenter #1 idx = 1
+I'm GeN-Foam input pretenter #1 idx = 2
+I'm GeN-Foam input pretenter #2  iwert = 2
+I'm GeN-Foam input pretenter #1 idx = 3
+I'm GeN-Foam input pretenter #2  iwert = 3
+I'm GeN-Foam input pretenter #1 idx = 4
+I'm GeN-Foam input pretenter #1 idx = 5
+I'm GeN-Foam input pretenter #1 idx = 6
+I'm GeN-Foam input pretenter #1 idx = 7
+I'm GeN-Foam input pretenter #1 idx = 8
+I'm GeN-Foam input pretenter #1 idx = 9
+I'm GeN-Foam input pretenter #1 idx = 9
+I'm GeN-Foam input pretenter #1 idx = 10
+I'm GeN-Foam input pretenter #1 idx = 11
+I'm GeN-Foam input pretenter #1 idx = 12
+I'm GeN-Foam input pretenter #1 idx = 13
+ for NO1
+0
+0
+ nerror                        4
+ UnitNr_sta_log                        4
+ UnitNr_formf                        4
+ UnitNr_formf_log                        4
+ UnitNr_itlog1                        4
+ UnitNr_itlog2                        4
+ IALPHA                        4
+ IANZA                        4
+ IAXKON                      240
+ IBLOC                        4
+ iBroyden_s                        4
+ iBroyden_u                        4
+ IBMECH                        4
+ IBZTEI                      120
+ IBZZEI                      120
+ ICOUPL                        4
+ IDEGAS                     2440
+ IDENSI                        4
+ IEND1                        4
+ IFAALT                      244
+ IFALLL                      244
+ IFORM                        4
+ IFREI                     4800
+ IFRONT                        4
+ IGASZA                      732
+ IGASZI                      732
+ IHGAP                        4
+ IGRNSZ                        4
+ IKUEHL                        4
+ ikueka                        4
+ INSTA                        4
+ INTRUP                        4
+ INUMB                        4
+ IPLOT                        4
+ IRAKON                      244
+ IRAND                        4
+ IRELOC                        4
+ ISCHR                        4
+ ISCHRL                      244
+ ISTATI                        4
+ ISTOP                        4
+ ISTREC                     6400
+ ISTRUK                        4
+ ITEALT                        4
+ ITEMTE                        4
+ ITERAX                        4
+ ITERAG                        4
+ ITERGE                        4
+ ITERGS                        4
+ ITERS                      244
+ ITERSG                        4
+ ITERT                        4
+ ITERTG                        4
+ ITHEOMEC                        4
+ IVAR1                        4
+ IXMODE                        4
+ inumbm                        4
+ RecNr_mic                        4
+ RecNr_mac                        4
+ IZENKA                        4
+ KFRONT                        4
+ KPLOT                        4
+ KRIMAX                     1600
+ Init_one                       80
+ Init_fuel                       80
+ Init_cool                       80
+ Init_axi                     4880
+ LSCHNI                        4
+ MEND                        4
+ M1                        4
+ M1B                        4
+ M1H                        4
+ M1STR                        4
+ M2                       80
+ M3                        4
+ M31                        4
+ M32                        4
+ NFRONT                        4
+ NKOMM                        4
+ NRSUDT                        4
+ NRSUIT                        4
+ NTIMAN                      160
+ NTIMSU                      160
+ Number_Nodes_fuel                      244
+ Number_Nodes_clad                      244
+ No_TimeStepReq                        4
+ iWarning_fuel                       80
+ iWarning_clad                       80
+ iWarning_cool                       80
+ iclfail                        4
+ ICORRO                        4
+ icrkpi                        4
+ ifba                        4
+ ihbs                        4
+ iHe                        4
+ ihydd                        4
+ iloca                        4
+ IMPLIC                        4
+ intaxl                        4
+ ioxide                        4
+ ioxire                        4
+ iphasezr                        4
+ iplnum                        4
+ IPLOT1                        4
+ IPLOT2                        4
+ IPOINT                        4
+ IPURE                        4
+ ISCHR1                        4
+ ISCHR2                        4
+ ISLICE                        4
+ ISTAT                        4
+ ISTZNE                        4
+ isurfb                        4
+ ITERM                        4
+ ITERMG                        4
+ itlog                        4
+ ITRNPT                      244
+ kokoko                        4
+ MaxRecNr_mac                        4
+ MaxRecNr_mic                        4
+ MaxRecNr_sta                        4
+ MSTEP                        4
+ NRSUIS                        4
+ NUMBER                       20
+ RecNr_sta                        4
+ kontr                      168
+ thbdyi                      244
+ thbdyo                      244
+ thbysi                      244
+ FormfAx                        4
+ IBRUT                      244
+ MatProp_fuel                     4880
+ MatProp_clad                       80
+ MatProp_strc                     2440
+ MatProp_cool                       40
+ IGEFUE                     1600
+ NOX                       40
+ IEINLA                      244
+ LSTERN                      244
+ IIII1                        4
+ IIII2                        4
+ IIII3                        4
+ IIII4                        4
+ IIII5                        4
+ i4_comp                   591944
+ ibyte                        4
+ RecLength_mic                        4
+ RecLength_mac                        4
+ RecLength_sta                        4
+ len_i4                      244
+ len_r4                      244
+ len_r8                      244
+ Random_Shape                      840
+ INOISE                        4
+ NumbExpTerms                        4
+ IGd                        4
+ ixsec                      244
+ iRIA                        4
+ PK_imax                        4
+ lburst                        4
+ iecr                        4
+ ikuehl_loca                        4
+ ixmode_loca                        4
+ ibmech_loca                        4
+ ialpha_loca                        4
+ ihgap_loca                        4
+ icorro_loca                        4
+ iplnum_loca                        4
+ itlog_loca                        4
+ iclfail_loca                        4
+ ModClad_loca                       80
+ Azzei                      240
+ Infplo                       80
+ Itextk                     1200
+ Pincha                       12
+ Formcha                     1000
+ AXKONV                        4
+ CLADRP                      244
+ ISCHMB                      244
+ ISCHMH                      244
+ LXKONV                      244
+ MKONV                        4
+ SKONV                      244
+ THANLY                      244
+ TKONV                        4
+ TRANSA                        4
+ MacroTime_zero                        4
+ MacroTime_end                        4
+ MacroTime_restart                        4
+ Normal_end                        4
+ Cladrp_glob                        4
+ Change_of_Geometry                        4
+ Conv_large_strain                        4
+ plenum                        4
+ LCondRampUp                      244
+ LCondRampDown                      244
+ start_loca                        4
+ trans struct initialised
+ trans calculation is done

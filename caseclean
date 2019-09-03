@@ -1,0 +1,7 @@
+rm -f *.log
+rm -f *.mac
+rm -f *.mic
+rm -f *.pli
+rm -f *.res
+rm -r *.out
+rm -f FormfExt
